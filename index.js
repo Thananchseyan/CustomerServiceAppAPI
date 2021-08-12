@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-const URL = "mongodb+srv://testuser:test123@cluster0.yn6ru.mongodb.net/CustomerService?retryWrites=true&w=majority";
+require('dotenv').config()
 
-mongoose.connect(URL,{ useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.db_URL,{ useNewUrlParser: true, useUnifiedTopology: true })
     .then(()=>{
         console.log("connected to database");
     })
@@ -22,6 +22,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/',require('./routes/index'));
 
-app.listen(3000,()=>{
+app.listen(process.env.port || 3000,()=>{
     console.log("Server running");
 })
