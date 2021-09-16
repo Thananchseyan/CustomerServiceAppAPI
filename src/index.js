@@ -1,0 +1,64 @@
+const express=require('express');
+const helmet=require('helmet');
+const cors=require('cors');
+const {ApolloServer}=require('apollo-server-express');
+      require('dotenv').config();
+const models=require('./models');
+const typeDefs=require('./schema');
+const resolvers=require('./Resolvers');
+const db=require('./db');
+const port=process.env.PORT||4000;
+const DB_HOST=process.env.DB_HOST;
+const app=express();
+app.use(helmet());
+app.use(cors());
+const jwt=require('jsonwebtoken');
+db.connect(DB_HOST);
+
+const getUser=token=>{
+      if(token){
+            try{
+                  return jwt.verify(token,process.env.JWT_SECRET);
+            }catch (err){
+                  throw new Error('Session Invalid');
+            }
+      }
+};
+
+async function startServer() {
+      const server = new ApolloServer({
+            typeDefs,
+            resolvers,
+            context: ({ req }) => {
+                  const token = req.headers.authorization;
+                  const user = getUser(token);
+                  console.log(user);
+                  return { models, user };
+            }
+      });
+      await server.start();
+      server.applyMiddleware({ app, path: '/api' });
+      app.listen({ port }, () =>
+          console.log(
+              `GraphQL Server running at http://localhost:${port}${server.graphqlPath}`
+          )
+      );
+}
+startServer();
+/*const server = new ApolloServer({
+      typeDefs,
+      resolvers,
+      context: ({ req }) => {
+            const token = req.headers.authorization;
+            const user = getUser(token);
+            console.log(user);
+            return { models, user };
+      }
+});
+await apolloServer.start();
+server.applyMiddleware({ app, path: '/api' });
+app.listen({ port }, () =>
+    console.log(
+        `GraphQL Server running at http://localhost:${port}${server.graphqlPath}`
+    )
+);*/
