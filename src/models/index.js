@@ -1,14 +1,39 @@
 const Province=require('./Province');
 const District=require('./District');
 const SystemAdmin=require('./SystemAdmin');
-const ServiceProvider=require('./ServiceProviderDir');
-const Customer=require('./CustomerDir');
+const Booking=require('./Booking');
+const Customer=require('./Customer');
+const CustomerAccount=require('./CustomerAccount');
+const CustomerReview=require('./CustomerReview');
+const Images=require('./Images');
+const Manager=require('./Manager');
+const Membership=require('./Membership');
+const Moderator=require('./Moderator');
+const Owner=require('./Owner');
+const Service=require('./Service');
+const ServiceProvider=require('./ServiceProvider');
+const Worker=require('./Worker');
+const WorkingRange=require('./WorkingRange');
+const WorkStation=require('./WorkStation');
 
 const models={
     Province,
     District,
     SystemAdmin,
+    Booking,
+    Customer,
+    CustomerAccount,
+    CustomerReview,
+    Images,
+    Manager,
+    Membership,
+    Moderator,
+    Owner,
+    Service,
     ServiceProvider,
-    Customer
+    Worker,
+    WorkingRange,
+    WorkStation
+
 };
 module.exports=models;

@@ -37,10 +37,3 @@ const WorkerSchema=new mongoose.Schema(
 const Worker=mongoose.model('Worker',WorkerSchema);
 module.exports = Worker;
 
-/*workerId:String!
-    serviceProvider:ServiceProvider!
-    username:String!
-    password:String!
-    name:String!
-    contact_no:String!
-    rating:Float!*/
