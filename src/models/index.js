@@ -15,6 +15,9 @@ const ServiceProvider=require('./ServiceProvider');
 const Worker=require('./Worker');
 const WorkingRange=require('./WorkingRange');
 const WorkStation=require('./WorkStation');
+const NotificationSP=require('./NotificationSP');
+const Appointment=require('./Appointment');
+const Payment=require('./Payment');
 
 const models={
     Province,
@@ -33,7 +36,10 @@ const models={
     ServiceProvider,
     Worker,
     WorkingRange,
-    WorkStation
+    WorkStation,
+    NotificationSP,
+    Appointment,
+    Payment
 
 };
 module.exports=models;

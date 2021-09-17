@@ -94,6 +94,38 @@ module.exports=gql`
     rating:Float!
     }
     
+    type Appointment{
+    id:ID!
+    booking:Booking!
+    starting_date:Date!
+    duration:Int
+    worker:[Worker!]!
+    state:String 
+    }
+    
+    type Payment{
+    id:ID!
+    from:String!
+    to:String!
+    appointment:Appointment!
+    amount:Float!
+    payedOn:Date!
+    }
+    
+    type NotificationCustomer{
+    id:ID!
+    customer:Customer!
+    appointment:Appointment!
+    state:String
+    }
+    
+    type NotificationSP{
+    id:ID!
+    serviceProvider:ServiceProvider!
+    booking:Booking!
+    state:String
+    }
+    
     type Booking{
     id:ID!
     by:Customer!
