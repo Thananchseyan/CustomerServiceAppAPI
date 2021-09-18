@@ -6,6 +6,11 @@ const AppointmentSchema=new mongoose.Schema(
             ref:'Booking',
             required:true
         },
+        appointment_id:{
+            type:String,
+            required:true,
+            unique:true
+        },
         starting_date:{
             type:Date,
             required:true

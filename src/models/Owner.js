@@ -8,15 +8,20 @@ const OwnerSchema=new mongoose.Schema(
         owner_NIC:{
             type:String,
             required:true,
-            unique:true
+            unique:true,
+            minlength:10,
+            maxlength:12
         },
         contact_no:{
             type:String,
-            required:true
+            required:true,
+            minlength:10,
+            maxlength:12
         },
         profile:{
             type:String,
-            required:true
+            required:true,
+            default:"ownerLink"
         }
     }
 );

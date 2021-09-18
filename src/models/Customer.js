@@ -22,13 +22,23 @@ const CustomerSchema=new mongoose.Schema(
             required:true,
             unique:true
         },
+        email: {
+            type:String
+        },
         joined:{
             type:Date,
             required:true
         },
+        no_of_vote:{
+            type:Number,
+            required:true,
+            default:0
+        },
         rating:{
             type:Number,
-            default:0
+            default:0,
+            required:true
+
         }
     }
 );

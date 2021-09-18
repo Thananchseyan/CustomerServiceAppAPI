@@ -1,6 +1,15 @@
 const mongoose=require('mongoose');
 const ProviderSchema=new mongoose.Schema(
     {
+        username:{
+            type:String,
+            required:true,
+            unique:true
+        },
+        password:{
+            type:String,
+            required:true
+        },
         name:{
             type:String,
             required:true,
@@ -21,9 +30,15 @@ const ProviderSchema=new mongoose.Schema(
             lowercase:true,
             unique:true
         },
+        no_of_vote:{
+            type:Number,
+            default:0,
+            required:true
+        },
         rating:{
             type:Number,
-            default:0
+            default:0,
+            required:true
         },
         bank_acc_no:{
             type:String,
@@ -47,11 +62,13 @@ const ProviderSchema=new mongoose.Schema(
             ref:'Membership',
             required:true
         },
-        workingRange:{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'WorkingRange',
-            required:true
-        },
+        workingRange:[
+            {
+                type:mongoose.Schema.Types.ObjectId,
+                ref:'WorkingRange'
+            }
+        ]
+        ,
         joined_at:{
             type:Date,
             required:true
@@ -62,7 +79,8 @@ const ProviderSchema=new mongoose.Schema(
             lowercase:true,
             default:'registered',
             enum:['registered','approved','blocked']
-        }
+        },
+
     }
 );
 const ServiceProvider=mongoose.model('ServiceProvider',ProviderSchema);

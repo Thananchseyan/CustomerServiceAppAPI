@@ -7,7 +7,15 @@ module.exports = {
     },
 
     showOwners: async (parent,args,{models})=>{
-        return await models.ServiceProvider.Owner.find();
+        return await models.Owner.find();
+    },
+
+    showWorkingRange: async (parent,args,{models})=>{
+        return await models.WorkingRange.find();
+    },
+
+    showServiceProviders: async (parent,args,{models})=>{
+        return await models.ServiceProvider.find();
     },
 
     districtsByProvince: async (parent,{ProvinceName},{models})=> {

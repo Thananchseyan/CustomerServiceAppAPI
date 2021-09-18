@@ -17,7 +17,7 @@ module.exports=gql`
     type WorkingRange{
     id:ID!
     range_type:String!
-    districts:[District!]!
+    district:[District]
     }
     
     type SystemAdmin{
@@ -59,16 +59,19 @@ module.exports=gql`
     
     type ServiceProvider{
     id:ID!
+    username:String!
+    password:String!
     name:String!
     address:String!
     contact_no:[String!]!
     email:String!
+    no_of_vote:Int!
     rating:Float!
     bank_acc_no:String!
     owner:Owner!
-    Service:[Service!]!
+    service:[Service!]!
     membership:Membership!
-    workingRange:WorkingRange!
+    workingRange:[WorkingRange!]!
     joined_at:Date!
     state:String!
     }
@@ -97,6 +100,7 @@ module.exports=gql`
     type Appointment{
     id:ID!
     booking:Booking!
+    appointment_id:String!
     starting_date:Date!
     duration:Int
     worker:[Worker!]!
@@ -155,6 +159,8 @@ module.exports=gql`
     profile:String
     name:String!
     contact_no:String!
+    email:String
+    no_of_vote:Int!
     rating:Float!
     joined:Date!
     }
@@ -180,11 +186,20 @@ module.exports=gql`
     showOwners:[Owner!]!
     getProvinceID(provinceName:String!):String!
     districtsByProvince(ProvinceName:String!):[District!]!
+    showWorkingRange:[WorkingRange!]!
+    showServiceProviders:[ServiceProvider!]!
     }
     
     type Mutation{
+    signUPSP(username:String!,password:String!,name:String!,address:String!,contact_no:[String!]!,email:String!,bank_acc_no:String!,owner:ID!,service:[ID!]!,membership:ID!,workingRange:[ID],joined_at:Date!):ServiceProvider!
+    signINSP(username:String!,password:String!):String!
+    signUPCustomer(username:String!,password:String!,name:String!,contact_no:String!,email:String,joined:Date!):Customer!
+    signINCustomer(username:String!,password:String!):String!
+    addService(service_name:String!,icon:String!):Service!
     addProvince(provinceName:String!):Province!
     addDistrict(province:ID!,districtName:String!):District!
-    addOwner(name:String!,nic:String!,no:String!):Owner!
+    addOwner(owner_name:String!,owner_NIC:String!,contact_no:String!):Owner!
+    addMembership(membership_name:String!,membership_period:Int!,membership_value:Int!):Membership!
+    addWorkingRange(range_type:String!,district:[ID]):WorkingRange!
     }
 `;

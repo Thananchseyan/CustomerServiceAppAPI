@@ -6,22 +6,26 @@ const MembershipSchema=new mongoose.Schema(
             required:true,
             unique:true,
             lowercase:true,
-            enum:['platinum','gold','silver','custom']
+            default:"silver",
+            enum:['platinum','gold','silver']
         },
         membership_period:{
             type:Number,
             required:true,
             unique:true,
+            default:1,
+            enum:[3,2,1]
         },
         membership_value:{
             type:Number,
             required:true,
             unique:true,
-            enum:[100,50,25,10]
+            enum:[100,50,25]
 
         },
         description:{
-            type:String
+            type:String,
+            default:"none"
         }
     }
 );

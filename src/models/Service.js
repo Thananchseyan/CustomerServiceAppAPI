@@ -8,11 +8,13 @@ const ServiceSchema=new mongoose.Schema(
             unique:true
         },
         description:{
-            type:String
+            type:String,
+            default:"None"
         },
         icon:{
             type:String,
             required:true,
+            default:"",
             unique:true
         }
 
