@@ -103,11 +103,28 @@ module.exports={
             membership_value:membership_value
         })
     },
-    addWorkingRange:async (parent,{range_type,district},{models})=>{
+    addWorkingRange:async (parent,{name,range_type,district},{models})=>{
         return await models.WorkingRange.create({
+            name:name,
             range_type:range_type,
             district:district
         })
+    },
+    addWorker:async (parent,{workerId,serviceProvider,username,password,name,contact_no},{models})=>{
+        const hashed=await bcrypt.hash(password,10);
+        try{
+            return await models.Worker.create({
+                workerId:workerId,
+                serviceProvider:serviceProvider,
+                username:username,
+                password:hashed,
+                name:name,
+                contact_no:contact_no
+            });
+        }catch (err){
+            console.log(err);
+            throw new Error('Error in Addition');
+        }
     }
 
 

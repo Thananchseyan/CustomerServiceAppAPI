@@ -1,6 +1,13 @@
 const mongoose=require('mongoose');
 const RangeSchema=new mongoose.Schema(
     {
+        name:{
+            type:String,
+            required:true,
+            lowercase:true,
+            unique:true
+        },
+
         range_type:{
             type:String,
             required:true,

@@ -18,6 +18,10 @@ module.exports = {
         return await models.ServiceProvider.find();
     },
 
+    getWorkingRange: async (parent,{name},{models})=>{
+        return models.WorkingRange.findOne({name:name});
+    },
+
     districtsByProvince: async (parent,{ProvinceName},{models})=> {
         console.log(ProvinceName);
         return models.District.aggregate([

@@ -16,6 +16,7 @@ module.exports=gql`
     
     type WorkingRange{
     id:ID!
+    name:String!
     range_type:String!
     district:[District]
     }
@@ -188,6 +189,7 @@ module.exports=gql`
     districtsByProvince(ProvinceName:String!):[District!]!
     showWorkingRange:[WorkingRange!]!
     showServiceProviders:[ServiceProvider!]!
+    getWorkingRange(name:String!):WorkingRange!
     }
     
     type Mutation{
@@ -200,6 +202,7 @@ module.exports=gql`
     addDistrict(province:ID!,districtName:String!):District!
     addOwner(owner_name:String!,owner_NIC:String!,contact_no:String!):Owner!
     addMembership(membership_name:String!,membership_period:Int!,membership_value:Int!):Membership!
-    addWorkingRange(range_type:String!,district:[ID]):WorkingRange!
+    addWorkingRange(name:String!,range_type:String!,district:[ID]):WorkingRange!
+    addWorker(workerId:String!,serviceProvider:ID!,username:String!,password:String!,name:String!,contact_no:String!):Worker!
     }
 `;
