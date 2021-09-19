@@ -14,6 +14,7 @@ const RangeSchema=new mongoose.Schema(
             lowercase:true,
             enum:['island','province','district']
         },
+
         district:[
             {
                 type:mongoose.Schema.Types.ObjectId,

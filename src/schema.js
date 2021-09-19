@@ -193,6 +193,7 @@ module.exports=gql`
     }
     
     type Mutation{
+    signUPAdmin(username:String!,password:String!):SystemAdmin!
     signUPSP(username:String!,password:String!,name:String!,address:String!,contact_no:[String!]!,email:String!,bank_acc_no:String!,owner:ID!,service:[ID!]!,membership:ID!,workingRange:[ID],joined_at:Date!):ServiceProvider!
     signINSP(username:String!,password:String!):String!
     signUPCustomer(username:String!,password:String!,name:String!,contact_no:String!,email:String,joined:Date!):Customer!
