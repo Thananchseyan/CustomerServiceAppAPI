@@ -3,6 +3,7 @@ const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 const {AuthenticationError}=require('apollo-server-express');
 require('dotenv').config();
+
 module.exports={
 
     signUPSP: async (parent,{username,password,name,address,contact_no,email,bank_acc_no,owner,service,membership,workingRange,joined_at},{models})=>{

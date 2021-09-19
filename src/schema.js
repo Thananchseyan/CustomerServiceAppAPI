@@ -23,7 +23,7 @@ module.exports=gql`
     
     type SystemAdmin{
     id:ID!
-    user_name:String!
+    username:String!
     password:String!
     profile:String!
     }
@@ -89,7 +89,6 @@ module.exports=gql`
     
     type Worker{
     id:ID!
-    workerId:String!
     serviceProvider:ServiceProvider!
     username:String!
     password:String!
@@ -194,6 +193,7 @@ module.exports=gql`
     
     type Mutation{
     signUPAdmin(username:String!,password:String!):SystemAdmin!
+    signINAdmin(username:String!,password:String!):String!
     signUPSP(username:String!,password:String!,name:String!,address:String!,contact_no:[String!]!,email:String!,bank_acc_no:String!,owner:ID!,service:[ID!]!,membership:ID!,workingRange:[ID],joined_at:Date!):ServiceProvider!
     signINSP(username:String!,password:String!):String!
     signUPCustomer(username:String!,password:String!,name:String!,contact_no:String!,email:String,joined:Date!):Customer!
@@ -204,6 +204,6 @@ module.exports=gql`
     addOwner(owner_name:String!,owner_NIC:String!,contact_no:String!):Owner!
     addMembership(membership_name:String!,membership_period:Int!,membership_value:Int!):Membership!
     addWorkingRange(name:String!,range_type:String!,district:[ID]):WorkingRange!
-    addWorker(workerId:String!,serviceProvider:ID!,username:String!,password:String!,name:String!,contact_no:String!):Worker!
+    addWorker(serviceProvider:ID!,username:String!,password:String!,name:String!,contact_no:String!):Worker!
     }
 `;

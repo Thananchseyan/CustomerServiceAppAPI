@@ -1,11 +1,6 @@
 const mongoose=require('mongoose');
 const WorkerSchema=new mongoose.Schema(
     {
-        workerId:{
-            type:String,
-            unique:true,
-            required:true
-        },
         serviceProvider:{
             type:mongoose.Schema.Types.ObjectId,
             ref:'ServiceProvider',
