@@ -205,5 +205,7 @@ module.exports=gql`
     addMembership(membership_name:String!,membership_period:Int!,membership_value:Int!):Membership!
     addWorkingRange(name:String!,range_type:String!,district:[ID]):WorkingRange!
     addWorker(serviceProvider:ID!,username:String!,password:String!,name:String!,contact_no:String!):Worker!
+    approveServiceProvider(username:String!):Boolean!
+    blockServiceProvider(username:String!):Boolean!
     }
 `;

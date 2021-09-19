@@ -1,4 +1,4 @@
-const Admin=require('./AdminMutations');
+const Admin=require('./Admin');
 const Mutation=require('./mutation');
 module.exports={
     ...Admin,
