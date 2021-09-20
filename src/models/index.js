@@ -18,6 +18,7 @@ const WorkStation=require('./WorkStation');
 const NotificationSP=require('./NotificationSP');
 const Appointment=require('./Appointment');
 const Payment=require('./Payment');
+const Record=require('./Record');
 
 const models={
     Province,
@@ -39,7 +40,8 @@ const models={
     WorkStation,
     NotificationSP,
     Appointment,
-    Payment
+    Payment,
+    Record
 
 };
 module.exports=models;

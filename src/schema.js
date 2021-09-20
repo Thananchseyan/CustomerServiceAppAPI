@@ -180,6 +180,12 @@ module.exports=gql`
     customer:Customer!
     }
     
+    type Record{
+    id:ID!
+    appointment_id:String!
+    images:[Image!]!
+    }
+    
     type Query{
     showProvinces:[Province!]!
     showDistricts:[District!]!
