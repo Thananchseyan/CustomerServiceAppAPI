@@ -1,5 +1,5 @@
 const Mutation=require('./Mutations');
-const Query=require('./Query');
+const Query=require('./Queries');
 const District=require('./District');
 const WorkingRange=require('./WorkingRange');
 const ServiceProvider=require('./ServiceProvider');

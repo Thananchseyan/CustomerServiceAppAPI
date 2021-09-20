@@ -70,9 +70,9 @@ module.exports=gql`
     rating:Float!
     bank_acc_no:String!
     owner:Owner!
-    service:[Service!]!
+    service:[String!]!
     membership:Membership!
-    workingRange:[WorkingRange!]!
+    workingRange:[String!]!
     joined_at:Date!
     state:String!
     }
@@ -195,12 +195,14 @@ module.exports=gql`
     showWorkingRange:[WorkingRange!]!
     showServiceProviders:[ServiceProvider!]!
     getWorkingRange(name:String!):WorkingRange!
+    checkDistrictOnServiceProvider(districtName:String!):[ServiceProvider]
+    getServiceProvidersByService(service:String!):[ServiceProvider] 
     }
     
     type Mutation{
     signUPAdmin(username:String!,password:String!):SystemAdmin!
     signINAdmin(username:String!,password:String!):String!
-    signUPSP(username:String!,password:String!,name:String!,address:String!,contact_no:[String!]!,email:String!,bank_acc_no:String!,owner:ID!,service:[ID!]!,membership:ID!,workingRange:[ID],joined_at:Date!):ServiceProvider!
+    signUPSP(username:String!,password:String!,name:String!,address:String!,contact_no:[String!]!,email:String!,bank_acc_no:String!,owner:ID!,service:[String!]!,membership:ID!,workingRange:[String]!,joined_at:Date!):ServiceProvider!
     signINSP(username:String!,password:String!):String!
     signUPCustomer(username:String!,password:String!,name:String!,contact_no:String!,email:String,joined:Date!):Customer!
     signINCustomer(username:String!,password:String!):String!

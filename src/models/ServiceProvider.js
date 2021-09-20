@@ -52,9 +52,8 @@ const ProviderSchema=new mongoose.Schema(
         },
         service:[
             {
-                type:mongoose.Schema.Types.ObjectId,
-                ref:'Service',
-                required:true
+                type:String,
+                lowercase:true
             }
         ],
         membership:{
@@ -64,8 +63,7 @@ const ProviderSchema=new mongoose.Schema(
         },
         workingRange:[
             {
-                type:mongoose.Schema.Types.ObjectId,
-                ref:'WorkingRange'
+                type:String
             }
         ]
         ,
