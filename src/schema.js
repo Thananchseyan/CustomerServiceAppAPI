@@ -197,6 +197,8 @@ module.exports=gql`
     getWorkingRange(name:String!):WorkingRange!
     checkDistrictOnServiceProvider(districtName:String!):[ServiceProvider]
     getServiceProvidersByService(service:String!):[ServiceProvider] 
+    defaultSorting:[ServiceProvider]
+    sortingByRating:[ServiceProvider]
     }
     
     type Mutation{
