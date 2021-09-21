@@ -195,6 +195,7 @@ module.exports=gql`
     getServiceProvidersByService(service:String!):[ServiceProvider] 
     defaultSorting:[ServiceProvider]
     sortingByRating:[ServiceProvider]
+    getMembership(membership_name:String!):Membership!
     }
     
     type Mutation{

@@ -54,6 +54,7 @@ const ProviderSchema=new mongoose.Schema(
             {
                 type:String,
                 lowercase:true
+
             }
         ],
         membership:{
