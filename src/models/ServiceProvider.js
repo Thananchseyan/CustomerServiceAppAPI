@@ -1,4 +1,6 @@
 const mongoose=require('mongoose');
+//require('@mongoosejs/double');
+
 const ProviderSchema=new mongoose.Schema(
     {
         username:{
