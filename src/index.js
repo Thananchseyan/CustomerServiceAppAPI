@@ -7,7 +7,7 @@ const models=require('./models');
 const typeDefs=require('./schema');
 const resolvers=require('./Resolvers');
 const db=require('./db');
-const port=process.env.PORT||4000;
+const port=process.env.PORT||8000;
 const DB_HOST=process.env.DB_HOST;
 const app=express();
 app.use(helmet());
