@@ -8,10 +8,16 @@ module.exports = {
                     }
                 },
                 {
-                    $match:
-                        {
-                            workingRange:districtName
-                        }
+                    $match: {
+                        $and: [
+                            {
+                                workingRange: districtName
+                            },
+                            {
+                                state:"approved"
+                            }
+                        ]
+                    }
                 }
             ]
         );

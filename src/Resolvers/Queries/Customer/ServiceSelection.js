@@ -9,7 +9,15 @@ module.exports={
                 },
                 {
                     $match:{
-                        service:service
+                        $and:[
+                            {
+                                service:service
+                            },
+                            {
+                                state:"approved"
+                            }
+                        ]
+
                     }
                 }
             ]
