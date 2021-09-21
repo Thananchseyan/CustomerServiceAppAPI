@@ -13,6 +13,10 @@ const ModeratorSchema=new mongoose.Schema(
         profile:{
             type:String,
             required:true
+        },
+        left_date:{
+            type:Date,
+            default:null
         }
     }
 );

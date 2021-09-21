@@ -12,11 +12,15 @@ const ReviewSchema=new mongoose.Schema(
             required:true
         },
         content:{
-            type:String
+            type:String,
+            required:true,
+            default:""
         },
         rating:{
             type:Number,
-            default:0
+            default:0,
+            min:0,
+            max:5
         },
         publish:{
             type:Boolean,

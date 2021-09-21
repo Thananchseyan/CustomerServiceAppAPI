@@ -7,8 +7,5 @@ module.exports = {
     },
     membership: async (ServiceProvider,args,{models})=>{
         return models.Membership.findById(ServiceProvider.membership);
-    },
-    workingRange: async (ServiceProvider,args,{models})=>{
-        return models.WorkingRange.find({_id:{$in:ServiceProvider.workingRange}});
     }
 }

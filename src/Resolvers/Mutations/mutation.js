@@ -104,13 +104,7 @@ module.exports={
             membership_value:membership_value
         })
     },
-    addWorkingRange:async (parent,{name,range_type,district},{models})=>{
-        return await models.WorkingRange.create({
-            name:name,
-            range_type:range_type,
-            district:district
-        })
-    },
+
     addWorker:async (parent,{workerId,serviceProvider,username,password,name,contact_no},{models})=>{
         const hashed=await bcrypt.hash(password,10);
         try{

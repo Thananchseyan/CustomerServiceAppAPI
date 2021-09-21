@@ -10,16 +10,8 @@ module.exports = {
         return await models.Owner.find();
     },
 
-    showWorkingRange: async (parent,args,{models})=>{
-        return await models.WorkingRange.find();
-    },
-
     showServiceProviders: async (parent,args,{models})=>{
         return await models.ServiceProvider.find();
-    },
-
-    getWorkingRange: async (parent,{name},{models})=>{
-        return models.WorkingRange.findOne({name:name});
     },
 
     districtsByProvince: async (parent,{ProvinceName},{models})=> {

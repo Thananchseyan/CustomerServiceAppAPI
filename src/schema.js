@@ -14,13 +14,6 @@ module.exports=gql`
     districtName:String!
     }
     
-    type WorkingRange{
-    id:ID!
-    name:String!
-    range_type:String!
-    district:[District]
-    }
-    
     type SystemAdmin{
     id:ID!
     username:String!
@@ -35,19 +28,22 @@ module.exports=gql`
     contact_no:String!
     profile:String!
     }
-    
-    type Manager{
-    id:ID!
-    user_name:String!
-    password:String!
-    profile:String!
-    }
-    
+  
     type Moderator{
     id:ID!
     user_name:String!
     password:String!
     profile:String!
+    left_date:Date
+    }
+    
+    type Message{
+    id:ID!
+    by:String!
+    from:String!
+    message:String!
+    read:Boolean
+    received_date:Date!
     }
     
     type Membership{
@@ -95,6 +91,7 @@ module.exports=gql`
     name:String!
     contact_no:String!
     rating:Float!
+    left_date:Date
     }
     
     type Appointment{
@@ -193,9 +190,7 @@ module.exports=gql`
     showOwners:[Owner!]!
     getProvinceID(provinceName:String!):String!
     districtsByProvince(ProvinceName:String!):[District!]!
-    showWorkingRange:[WorkingRange!]!
     showServiceProviders:[ServiceProvider!]!
-    getWorkingRange(name:String!):WorkingRange!
     checkDistrictOnServiceProvider(districtName:String!):[ServiceProvider]
     getServiceProvidersByService(service:String!):[ServiceProvider] 
     defaultSorting:[ServiceProvider]
@@ -214,7 +209,6 @@ module.exports=gql`
     addDistrict(province:ID!,districtName:String!):District!
     addOwner(owner_name:String!,owner_NIC:String!,contact_no:String!):Owner!
     addMembership(membership_name:String!,membership_period:Int!,membership_value:Int!):Membership!
-    addWorkingRange(name:String!,range_type:String!,district:[ID]):WorkingRange!
     addWorker(serviceProvider:ID!,username:String!,password:String!,name:String!,contact_no:String!):Worker!
     approveServiceProvider(username:String!):Boolean!
     blockServiceProvider(username:String!):Boolean!

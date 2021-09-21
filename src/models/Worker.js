@@ -26,6 +26,10 @@ const WorkerSchema=new mongoose.Schema(
         rating:{
             type:Number,
             default:0
+        },
+        left_date:{
+            type:Date,
+            default:null
         }
     }
 );
