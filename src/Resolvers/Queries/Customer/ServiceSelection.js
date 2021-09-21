@@ -14,5 +14,16 @@ module.exports={
                 }
             ]
         );
+    },
+    getServices: async (parent,{args},{models})=>{
+        return models.Service.aggregate(
+            [
+                {
+                    $sort:{
+                        service_name: 1
+                    }
+                }
+            ]
+        );
     }
 }

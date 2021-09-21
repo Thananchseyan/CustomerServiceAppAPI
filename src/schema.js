@@ -187,6 +187,7 @@ module.exports=gql`
     }
     
     type Query{
+    getServices:[Service]
     showProvinces:[Province!]!
     showDistricts:[District!]!
     showOwners:[Owner!]!
