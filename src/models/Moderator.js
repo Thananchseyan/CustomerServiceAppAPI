@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 const ModeratorSchema=new mongoose.Schema(
     {
-        user_name:{
+        username:{
             type:String,
             required:true,
             unique:true
@@ -10,13 +10,36 @@ const ModeratorSchema=new mongoose.Schema(
             type:String,
             required:true
         },
-        profile:{
+        serviceProvider:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'ServiceProvider',
+            required:true
+        },
+        name:{
             type:String,
             required:true
         },
+        email:{
+            type:String,
+            required:true
+        },
+        contact_no:{
+            type:String,
+            required:true
+        },
+        profile:{
+            type:String,
+            required:true,
+            default:"moderator.jpeg"
+        },
+        appointed_on:{
+            type:Date,
+            required:true,
+            default:Date.now
+        },
         left_date:{
             type:Date,
-            default:null
+            default:"2020-01-01"
         }
     }
 );

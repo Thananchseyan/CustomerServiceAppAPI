@@ -28,14 +28,6 @@ module.exports=gql`
     contact_no:String!
     profile:String!
     }
-  
-    type Moderator{
-    id:ID!
-    user_name:String!
-    password:String!
-    profile:String!
-    left_date:Date
-    }
     
     type Message{
     id:ID!
@@ -73,6 +65,19 @@ module.exports=gql`
     state:String!
     }
     
+    type Moderator{
+    id:ID!
+    serviceProvider:ServiceProvider!
+    username:String!
+    password:String!
+    name:String!
+    email:String!
+    contact_no:String!
+    profile:String!
+    appointed_at:Date!
+    left_date:Date
+    }
+    
     type CustomerReview{
     id:ID!
     by:Customer!
@@ -89,8 +94,11 @@ module.exports=gql`
     username:String!
     password:String!
     name:String!
+    email:String!
     contact_no:String!
     rating:Float!
+    profile:String!
+    no_of_vote:Int!
     left_date:Date
     }
     
@@ -201,10 +209,11 @@ module.exports=gql`
     type Mutation{
     signUPAdmin(username:String!,password:String!):SystemAdmin!
     signINAdmin(username:String!,password:String!):String!
-    signUPSP(username:String!,password:String!,name:String!,address:String!,contact_no:[String!]!,email:String!,bank_acc_no:String!,owner:ID!,service:[String!]!,membership:ID!,workingRange:[String]!,joined_at:Date!):ServiceProvider!
+    signUPSP(username:String!,password:String!,name:String!,address:String!,contact_no:[String!]!,email:String!,bank_acc_no:String!,owner:ID!,service:[String!]!,membership:ID!,workingRange:[String]!):ServiceProvider!
     signINSP(username:String!,password:String!):String!
-    signUPCustomer(username:String!,password:String!,name:String!,contact_no:String!,email:String,joined:Date!):Customer!
+    signUPCustomer(username:String!,password:String!,name:String!,contact_no:String!,email:String!):Customer!
     signINCustomer(username:String!,password:String!):String!
+    addModerator(username:String!,password:String!,name:String!,email:String!,contact_no:String!):Moderator!
     addService(service_name:String!,icon:String!):Service!
     addProvince(provinceName:String!):Province!
     addDistrict(province:ID!,districtName:String!):District!

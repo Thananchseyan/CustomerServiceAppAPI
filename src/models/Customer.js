@@ -27,7 +27,8 @@ const CustomerSchema=new mongoose.Schema(
         },
         joined:{
             type:Date,
-            required:true
+            required:true,
+            default:Date.now
         },
         no_of_vote:{
             type:Number,

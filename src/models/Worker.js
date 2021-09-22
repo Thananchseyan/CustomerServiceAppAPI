@@ -19,13 +19,28 @@ const WorkerSchema=new mongoose.Schema(
             type:String,
             required:true
         },
+        email:{
+            type:String,
+            required:true
+        },
         contact_no:{
             type:String,
             required:true
         },
+        no_of_vote:{
+            type:Number,
+            default:0,
+            required:true
+        },
         rating:{
             type:Number,
-            default:0
+            default:0,
+            required:true
+        },
+        profile:{
+            type:String,
+            required:true,
+            default:"worker.jpeg"
         },
         left_date:{
             type:Date,
