@@ -213,6 +213,7 @@ module.exports=gql`
     signINSP(username:String!,password:String!):String!
     signUPCustomer(username:String!,password:String!,name:String!,contact_no:String!,email:String!):Customer!
     signINCustomer(username:String!,password:String!):String!
+    signINModerator(username:String!,password:String!):String!
     addModerator(username:String!,password:String!,name:String!,email:String!,contact_no:String!):Moderator!
     addService(service_name:String!,icon:String!):Service!
     addProvince(provinceName:String!):Province!
