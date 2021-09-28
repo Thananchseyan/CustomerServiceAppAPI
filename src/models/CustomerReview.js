@@ -26,6 +26,11 @@ const ReviewSchema=new mongoose.Schema(
             type:Boolean,
             required:true,
             default:true
+        },
+        createdAt:{
+            type:Date,
+            required:true,
+            default:Date.now
         }
     }
 );

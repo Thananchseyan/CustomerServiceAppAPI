@@ -1,9 +1,9 @@
 const mongoose=require('mongoose');
 const NotificationSPSchema=new mongoose.Schema(
     {
-        serviceProvider:{
+        worker:{
             type:mongoose.Schema.Types.ObjectId,
-            ref:'ServiceProvider',
+            ref:'Worker',
             required:true
         },
         message:{
@@ -26,5 +26,5 @@ const NotificationSPSchema=new mongoose.Schema(
         }
     }
 );
-const NotificationSP=mongoose.model('NotificationSP',NotificationSPSchema);
-module.exports = NotificationSP;
+const NotificationWorker=mongoose.model('NotificationWorker',NotificationSPSchema);
+module.exports = NotificationWorker;

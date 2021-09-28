@@ -82,9 +82,9 @@ module.exports=gql`
     id:ID!
     by:Customer!
     to:ServiceProvider!
-    createdAt:DateTime!
+    createdAt:Date!
     content:String
-    rating:Int 
+    rating:Float
     publish:Boolean!
     }
     
@@ -107,7 +107,7 @@ module.exports=gql`
     booking:Booking!
     appointment_id:String!
     starting_date:Date!
-    duration:Int
+    duration:String
     worker:[Worker!]!
     state:String 
     }
@@ -124,14 +124,24 @@ module.exports=gql`
     type NotificationCustomer{
     id:ID!
     customer:Customer!
-    appointment:Appointment!
+    message:String!
+    date:Date!
     state:String
     }
     
     type NotificationSP{
     id:ID!
     serviceProvider:ServiceProvider!
-    booking:Booking!
+    message:String!
+    date:Date!
+    state:String
+    }
+    
+    type NotificationWorker{
+    id:ID!
+    worker:Worker!
+    message:String!
+    date:Date!
     state:String
     }
     
@@ -140,8 +150,11 @@ module.exports=gql`
     by:Customer!
     to:ServiceProvider!
     state:String
-    workStation:WorkStation!
+    workStationAddress:String!
+    workStationDistrict:String!
+    workStation:WorkStation
     description:String
+    date:Date!
     }
     
     type Service{
@@ -153,6 +166,7 @@ module.exports=gql`
     
     type Image{
     id:ID!
+    name:String!
     url:String!
     description:String
     }
@@ -174,7 +188,7 @@ module.exports=gql`
     id:ID!
     card_holder:Customer!
     acc_no:String!
-    valid_date:Date!
+    valid_date:String!
     name_on_card:String!
     }
     
@@ -196,6 +210,7 @@ module.exports=gql`
     showProvinces:[Province!]!
     showDistricts:[District!]!
     showOwners:[Owner!]!
+    showCustomers:[Customer!]!
     getProvinceID(provinceName:String!):String!
     districtsByProvince(ProvinceName:String!):[District!]!
     showServiceProviders:[ServiceProvider!]!
@@ -204,6 +219,8 @@ module.exports=gql`
     defaultSorting:[ServiceProvider]
     sortingByRating:[ServiceProvider]
     getMembership(membership_name:String!):Membership!
+    showWorkers:[Worker]
+    showMyMessages(username:String!):[Message] 
     }
     
     type Mutation{
@@ -220,8 +237,26 @@ module.exports=gql`
     addDistrict(province:ID!,districtName:String!):District!
     addOwner(owner_name:String!,owner_NIC:String!,contact_no:String!):Owner!
     addMembership(membership_name:String!,membership_period:Int!,membership_value:Int!):Membership!
-    addWorker(serviceProvider:ID!,username:String!,password:String!,name:String!,contact_no:String!):Worker!
+    addWorker(serviceProvider:ID!,username:String!,password:String!,name:String!,email:String!,contact_no:String!):Worker!
     approveServiceProvider(username:String!):Boolean!
     blockServiceProvider(username:String!):Boolean!
+    saveCustomerAccountDetails(card_holder:ID!,acc_no:String!,valid_date:String!,name_on_card:String!):CustomerAccount!
+    sendReview(by:ID!,to:ID!,rating:Float!,content:String):CustomerReview!
+    sendMessage(by:String!,from:String!,message:String!):Message!
+    booking(by:ID!,to:ID!,workStationAddress:String!,workStationDistrict:String!,description:String!):Booking!
+    appointment(booking:ID!,appointment_id:String!,starting_date:Date!,duration:String!,worker:[ID]):Appointment!
+    confirmBooking(id:ID!):Boolean
+    cancelBooking(id:ID!):Boolean
+    initiateAppointment(appointment_id:String!):Boolean
+    finishAppointment(appointment_id:String!):Boolean
+    payment(from:String!,to:String!,appointment:ID!,amount:Float!):Payment!
+    saveImage(name:String!,url:String!,description:String):Image!
+    addToCustomerNotification(customer:ID!,message:String!):NotificationCustomer!
+    addToServiceProviderNotification(serviceProvider:ID!,message:String!):NotificationSP!
+    addToWorkerNotification(worker:ID!,message:String!):NotificationWorker!
+    CustomerReadNotification(id:ID!):Boolean!
+    ServiceProviderReadNotification(id:ID!):Boolean!
+    WorkerReadNotification(id:ID!):Boolean!
+    
     }
 `;

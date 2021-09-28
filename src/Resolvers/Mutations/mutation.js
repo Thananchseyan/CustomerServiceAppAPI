@@ -105,15 +105,15 @@ module.exports={
         })
     },
 
-    addWorker:async (parent,{workerId,serviceProvider,username,password,name,contact_no},{models})=>{
+    addWorker:async (parent,{serviceProvider,username,password,name,email,contact_no},{models})=>{
         const hashed=await bcrypt.hash(password,10);
         try{
             return await models.Worker.create({
-                workerId:workerId,
                 serviceProvider:serviceProvider,
                 username:username,
                 password:hashed,
                 name:name,
+                email:email,
                 contact_no:contact_no
             });
         }catch (err){

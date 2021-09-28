@@ -17,13 +17,28 @@ const BookingSchema=new mongoose.Schema(
             default: 'open',
             lowercase: true
         },
+        workStationAddress:{
+            type:String,
+            required:true,
+            default:""
+        },
+        workStationDistrict:{
+            type:String,
+            required:true,
+            lowercase:true
+        },
         workStation:{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'WorkStation',
-            required: true
+            default:null
         },
         description:{
             type: String
+        },
+        date:{
+            type:Date,
+            required:true,
+            default:Date.now
         }
 
     });

@@ -10,10 +10,12 @@ const Membership=require('./Membership');
 const Moderator=require('./Moderator');
 const Owner=require('./Owner');
 const Service=require('./Service');
+const NotificationCustomer=require('./NotificationCustomer');
 const ServiceProvider=require('./ServiceProvider');
 const Worker=require('./Worker');
 const WorkStation=require('./WorkStation');
 const NotificationSP=require('./NotificationSP');
+const NotificationWorker=require('./NotificationWorker');
 const Appointment=require('./Appointment');
 const Payment=require('./Payment');
 const Record=require('./Record');
@@ -36,6 +38,8 @@ const models={
     Worker,
     WorkStation,
     NotificationSP,
+    NotificationCustomer,
+    NotificationWorker,
     Appointment,
     Payment,
     Record,

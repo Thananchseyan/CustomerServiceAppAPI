@@ -6,10 +6,15 @@ const NotificationCustomerSchema=new mongoose.Schema(
             ref:'Customer',
             required:true
         },
-        appointment:{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'Appointment',
-            required:true
+        message:{
+            type:String,
+            required:true,
+            default:"You received a notification"
+        },
+        date:{
+            type:Date,
+            required:true,
+            default:Date.now
         },
         state:{
             type:String,

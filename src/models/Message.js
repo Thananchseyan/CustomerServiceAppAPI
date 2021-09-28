@@ -21,7 +21,8 @@ const MessageSchema=new mongoose.Schema(
         },
         received_date:{
             type:Date,
-            required:true
+            required:true,
+            default:Date.now
         }
     }
 );

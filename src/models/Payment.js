@@ -20,7 +20,8 @@ const PaymentSchema=new mongoose.Schema(
         },
         payedOn:{
             type:Date,
-            required:true
+            required:true,
+            default:Date.now
         }
     }
 );

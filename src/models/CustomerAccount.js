@@ -12,7 +12,7 @@ const AccountSchema=new mongoose.Schema(
             unique:true
         },
         valid_date:{
-            type:Date,
+            type:String,
             required:true
         },
         name_on_card:{
