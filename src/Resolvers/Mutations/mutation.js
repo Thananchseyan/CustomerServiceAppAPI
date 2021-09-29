@@ -33,6 +33,7 @@ module.exports={
         const provider=await models.ServiceProvider.findOne({
             username:username
         });
+        console.log(provider)
         if(!provider){
             throw new AuthenticationError('Error Signin in');
         }
