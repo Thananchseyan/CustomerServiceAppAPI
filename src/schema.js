@@ -216,6 +216,7 @@ module.exports=gql`
     sortingByRating:[ServiceProvider]
     getMembership(membership_name:String!):Membership!
     showWorkers:[Worker]
+    getMyWorkers:[Worker]
     showMyMessages(username:String!):[Message] 
     }
     
