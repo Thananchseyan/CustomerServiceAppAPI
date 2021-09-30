@@ -5,7 +5,7 @@ const MessageSchema=new mongoose.Schema(
             type:String,
             required:true
         },
-        from:{
+        to:{
             type:String,
             required:true
         },

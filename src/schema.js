@@ -31,7 +31,7 @@ module.exports=gql`
     type Message{
     id:ID!
     by:String!
-    from:String!
+    to:String!
     message:String!
     read:Boolean
     received_date:Date!
@@ -217,7 +217,7 @@ module.exports=gql`
     getMembership(membership_name:String!):Membership!
     showWorkers:[Worker]
     getMyWorkers:[Worker]
-    showMyMessages(username:String!):[Message] 
+    getMyMessages:[Message] 
     }
     
     type Mutation{
@@ -240,7 +240,7 @@ module.exports=gql`
     blockServiceProvider(username:String!):Boolean!
     saveCustomerAccountDetails(card_holder:ID!,acc_no:String!,valid_date:String!,name_on_card:String!):CustomerAccount!
     sendReview(by:ID!,to:ID!,rating:Float!,content:String):CustomerReview!
-    sendMessage(by:String!,from:String!,message:String!):Message!
+    sendMessage(to:String!,message:String!):Message!
     booking(by:ID!,to:ID!,workStationAddress:String!,workStationDistrict:String!,description:String!):Booking!
     appointment(booking:ID!,appointment_id:String!,starting_date:Date!,duration:String!,worker:[ID]):Appointment!
     confirmBooking(id:ID!):Boolean
