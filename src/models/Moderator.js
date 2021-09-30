@@ -1,6 +1,11 @@
 const mongoose=require('mongoose');
 const ModeratorSchema=new mongoose.Schema(
     {
+        serviceProvider:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'ServiceProvider',
+            required:true
+        },
         username:{
             type:String,
             required:true,
@@ -8,11 +13,6 @@ const ModeratorSchema=new mongoose.Schema(
         },
         password:{
             type:String,
-            required:true
-        },
-        serviceProvider:{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'ServiceProvider',
             required:true
         },
         name:{
@@ -27,21 +27,27 @@ const ModeratorSchema=new mongoose.Schema(
             type:String,
             required:true
         },
+        no_of_vote:{
+            type:Number,
+            default:0,
+            required:true
+        },
+        rating:{
+            type:Number,
+            default:0,
+            required:true
+        },
         profile:{
             type:String,
             required:true,
             default:"moderator.jpeg"
         },
-        appointed_on:{
-            type:Date,
-            required:true,
-            default:Date.now
-        },
         left_date:{
             type:Date,
-            default:"2020-01-01"
+            default:null
         }
     }
 );
 const Moderator=mongoose.model('Moderator',ModeratorSchema);
-module.exports=Moderator;
+module.exports = Moderator;
+

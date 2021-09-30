@@ -7,11 +7,11 @@ const CustomerAccount=require('./CustomerAccount');
 const CustomerReview=require('./CustomerReview');
 const Images=require('./Images');
 const Membership=require('./Membership');
-const Moderator=require('./Moderator');
 const Owner=require('./Owner');
 const Service=require('./Service');
 const NotificationCustomer=require('./NotificationCustomer');
 const ServiceProvider=require('./ServiceProvider');
+const Moderator=require('./Moderator');
 const Worker=require('./Worker');
 const WorkStation=require('./WorkStation');
 const NotificationSP=require('./NotificationSP');
@@ -31,10 +31,10 @@ const models={
     CustomerReview,
     Images,
     Membership,
-    Moderator,
     Owner,
     Service,
     ServiceProvider,
+    Moderator,
     Worker,
     WorkStation,
     NotificationSP,

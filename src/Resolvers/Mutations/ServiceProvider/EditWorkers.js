@@ -1,28 +1,30 @@
 const {AuthenticationError} = require('apollo-server-express');
 const bcrypt = require('bcrypt');
-const mongoose=require('mongoose');
+//const mongoose=require('mongoose');
 
 module.exports={
-    addModerator: async (parent,{username,password,name,email,contact_no},{models,ServiceProvider})=>{
-    //addModerator: async (parent,{serviceProvider,username,password,name,email,contact_no},{models})=>{
-        if (!ServiceProvider) {
-            throw new AuthenticationError('You must to be Service Provider');
+    addModerator: async (parent,{username,password,name,email,contact_no},{models,user})=>{
+        console.log(user.id);
+        const foundSP=await models.ServiceProvider.findById(user.id);
+        if (!user){
+            throw new AuthenticationError("You are not logged in");
         }
-
+        if(!foundSP){
+            throw new AuthenticationError("You might be using a fake token");
+        }
         const hashed=await bcrypt.hash(password,10);
         try{
-            return await models.Moderator.create({
-                serviceProvider:mongoose.Types.ObjectId(ServiceProvider.id),
-                //serviceProvider:serviceProvider,
+            return models.Moderator.create({
+                serviceProvider:user.id,
                 username:username,
                 password:hashed,
                 name:name,
-                contact_no:contact_no,
                 email:email,
+                contact_no:contact_no
             });
         }catch (err){
-            console.log(err);
-            throw new Error('Error in addition of moderator');
+            throw new Error("Addition of Moderator Failed");
         }
+
     }
 }

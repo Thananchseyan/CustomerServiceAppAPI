@@ -20,10 +20,38 @@ const getUser=token=>{
             try{
                   return jwt.verify(token,process.env.JWT_SECRET);
             }catch (err){
+                  console.log(err);
                   throw new Error('Session Invalid');
             }
       }
 };
+
+/*async function startServer(app) {
+      const server = new ApolloServer({
+            typeDefs,
+            resolvers,
+            context:async ({req})=>{
+                  const token = req.headers.authorization;
+                  const user = getUser(token);
+                  return {models,user};
+            }
+      })
+      await server.start();
+      server.applyMiddleware({app,path:'/api'});
+}
+//Express server setup
+//const port = process.env.PORT || 000;
+//const app = express();
+//app.use(helmet());
+//app.use(cors());
+startServer(app).then(()=>{
+      app.listen({port},()=>{
+            console.log(
+                `GraphQL Server is running successfully at port ${port}`
+            );
+            console.log(`GraphQL Server running at http://localhost:${port}/api`);
+      })
+})*/
 
 async function startServer() {
       const server = new ApolloServer({
@@ -31,6 +59,7 @@ async function startServer() {
             resolvers,
             context: ({ req }) => {
                   const token = req.headers.authorization;
+                  //const token = req.headers.authorization.split(' ')[1];
                   const user = getUser(token);
                   console.log(user);
                   return { models, user };
