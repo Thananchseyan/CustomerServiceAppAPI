@@ -238,10 +238,10 @@ module.exports=gql`
     addWorker(username:String!,password:String!,name:String!,email:String!,contact_no:String!):Worker!
     approveServiceProvider(username:String!):Boolean!
     blockServiceProvider(username:String!):Boolean!
-    saveCustomerAccountDetails(card_holder:ID!,acc_no:String!,valid_date:String!,name_on_card:String!):CustomerAccount!
-    sendReview(by:ID!,to:ID!,rating:Float!,content:String):CustomerReview!
+    saveCustomerAccountDetails(acc_no:String!,valid_date:String!,name_on_card:String!):CustomerAccount!
+    sendReview(to:ID!,rating:Float!,content:String):CustomerReview!
     sendMessage(to:String!,message:String!):Message!
-    booking(by:ID!,to:ID!,workStationAddress:String!,workStationDistrict:String!,description:String!):Booking!
+    booking(to:ID!,workStationAddress:String!,workStationDistrict:String!,description:String!):Booking!
     appointment(booking:ID!,appointment_id:String!,starting_date:Date!,duration:String!,worker:[ID]):Appointment!
     confirmBooking(id:ID!):Boolean
     cancelBooking(id:ID!):Boolean

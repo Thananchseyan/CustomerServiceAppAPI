@@ -1,5 +1,10 @@
 module.exports={
-    appointment:async (parent,{booking,appointment_id,starting_date,duration,worker},{models})=>{
+    appointment:async (parent,{booking,appointment_id,starting_date,duration,worker},{models,user})=>{
+        const provider=await models.ServiceProvider.findById(user.id);
+        const moderator=await models.Moderator.findById(user.id);
+        if (!provider && !moderator){
+            throw new Error("You didn't have a previlage");
+        }
         try{
             return models.Appointment.create({
                 booking: booking,
@@ -12,7 +17,13 @@ module.exports={
             throw new Error("Error in making Appointment");
         }
     },
-    initiateAppointment:async (parent,{appointment_id},{models})=>{
+    initiateAppointment:async (parent,{appointment_id},{models,user})=>{
+        const provider=await models.ServiceProvider.findById(user.id);
+        const moderator=await models.Moderator.findById(user.id);
+        const worker=await models.Worker.findById(user.id);
+        if (!provider && !moderator && !worker){
+            throw new Error("You didn't have a previlage");
+        }
         try{
             models.Appointment.updateOne({appointment_id:appointment_id},{$set:{state:"going"}},function (err,docs){
                 if (err){
@@ -29,7 +40,13 @@ module.exports={
             throw new Error("Initiate Failed");
         }
     },
-    finishAppointment:async (parent,{appointment_id},{models})=>{
+    finishAppointment:async (parent,{appointment_id},{models,user})=>{
+        const provider=await models.ServiceProvider.findById(user.id);
+        const moderator=await models.Moderator.findById(user.id);
+        const worker=await models.Worker.findById(user.id);
+        if (!provider && !moderator && !worker){
+            throw new Error("You didn't have a previlage");
+        }
         try{
             models.Appointment.updateOne({appointment_id:appointment_id},{$set:{state:"finished"}},function (err,docs){
                 if (err){

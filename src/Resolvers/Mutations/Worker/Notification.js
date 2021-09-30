@@ -1,5 +1,9 @@
 module.exports={
-    WorkerReadNotification:async (parent,{id},{models})=>{
+    WorkerReadNotification:async (parent,{id},{models,user})=>{
+        const worker=await models.Worker.findById(user.id);
+        if (!worker){
+            throw new Error("You cannot read this msg");
+        }
         try{
             models.NotificationWorker.updateOne({_id:id},{$set:{state:"closed"}},function (err,docs){
                 if (err){

@@ -1,8 +1,12 @@
 module.exports = {
-    booking: async (parent,{by,to,workStationAddress,workStationDistrict,description},{models})=>{
+    booking: async (parent,{by,to,workStationAddress,workStationDistrict,description},{models,user})=>{
+        const customer=await models.Customer.findById(user.id);
+        if (!customer){
+            throw new Error("You have to log in to our system to book");
+        }
         try{
             return models.Booking.create({
-                by:by,
+                by:user.id,
                 to:to,
                 workStationAddress:workStationAddress,
                 workStationDistrict:workStationDistrict,
@@ -14,10 +18,14 @@ module.exports = {
         }
 
     },
-    saveCustomerAccountDetails: async (parent,{card_holder,acc_no,valid_date,name_on_card},{models})=>{
+    saveCustomerAccountDetails: async (parent,{acc_no,valid_date,name_on_card},{models,user})=>{
+        const customer=await models.Customer.findById(user.id);
+        if (!customer){
+            throw new Error("You have to log in to our system");
+        }
         try{
             return models.CustomerAccount.create({
-                card_holder:card_holder,
+                card_holder:user.id,
                 acc_no:acc_no,
                 valid_date:valid_date,
                 name_on_card:name_on_card

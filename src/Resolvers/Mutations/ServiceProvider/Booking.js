@@ -1,6 +1,11 @@
 //const mongoose=require('mongoose');
 module.exports={
-    confirmBooking:async (parent,{id},{models})=>{
+    confirmBooking:async (parent,{id},{models,user})=>{
+        const provider=await models.ServiceProvider.findById(user.id);
+        const moderator=await models.Moderator.findById(user.id);
+        if (!provider && !moderator){
+            throw new Error("You didn't have a previlage");
+        }
         try{
             models.Booking.updateOne({_id:id},{$set:{state:"confirmed"}},function (err,docs){
                 if (err){
@@ -17,7 +22,12 @@ module.exports={
             throw new Error("block failed");
         }
     },
-    cancelBooking: async (parent,{id},{models})=>{
+    cancelBooking: async (parent,{id},{models,user})=>{
+        const provider=await models.ServiceProvider.findById(user.id);
+        const moderator=await models.Moderator.findById(user.id);
+        if (!provider && !moderator){
+            throw new Error("You didn't have a previlage");
+        }
         try{
             models.Booking.updateOne({_id:id},{$set:{state:"cancelled"}},function (err,docs){
                 if (err){
