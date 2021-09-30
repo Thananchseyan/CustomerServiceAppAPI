@@ -26,5 +26,49 @@ module.exports={
             throw new Error("Addition of Moderator Failed");
         }
 
+    },
+
+    addWorker:async (parent,{username,password,name,email,contact_no},{models,user})=>{
+        const foundSP=await models.ServiceProvider.findById(user.id);
+        const foundMod=await models.Moderator.findById(user.id);
+        const hashed=await bcrypt.hash(password,10);
+        if (!user){
+            throw new AuthenticationError("You are not logged in");
+        }
+        if(foundSP){
+            console.log("SP works");
+            try{
+                return models.Worker.create({
+                    serviceProvider:user.id,
+                    username:username,
+                    password:hashed,
+                    name:name,
+                    email:email,
+                    contact_no:contact_no
+                });
+            }catch (err){
+                console.log(err);
+                throw new Error("Addition of Worker is failed");
+            }
+        }else if (foundMod){
+            console.log("Moderator Works");
+            try{
+                return models.Worker.create({
+                    serviceProvider:foundMod.serviceProvider,
+                    username:username,
+                    password:hashed,
+                    name:name,
+                    email:email,
+                    contact_no:contact_no
+                });
+            }catch (err){
+                console.log(err);
+                throw new Error("Addition of Worker is failed");
+            }
+        }else{
+            throw new Error("You didn't have previlage");
+        }
+
+
     }
 }

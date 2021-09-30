@@ -226,7 +226,7 @@ module.exports=gql`
     signINSP(username:String!,password:String!):String!
     signUPCustomer(username:String!,password:String!,name:String!,contact_no:String!,email:String!):Customer!
     signINCustomer(username:String!,password:String!):String!
-    singINModerator(username:String!,password:String!):String!
+    signINModerator(username:String!,password:String!):String!
     signINWorker(username:String!,password:String!):String!
     addService(service_name:String!,icon:String!):Service!
     addModerator(username:String!,password:String!,name:String!,email:String!,contact_no:String!):Moderator!
@@ -234,7 +234,7 @@ module.exports=gql`
     addDistrict(province:ID!,districtName:String!):District!
     addOwner(owner_name:String!,owner_NIC:String!,contact_no:String!):Owner!
     addMembership(membership_name:String!,membership_period:Int!,membership_value:Int!):Membership!
-    addWorker(serviceProvider:ID!,username:String!,password:String!,name:String!,email:String!,contact_no:String!):Worker!
+    addWorker(username:String!,password:String!,name:String!,email:String!,contact_no:String!):Worker!
     approveServiceProvider(username:String!):Boolean!
     blockServiceProvider(username:String!):Boolean!
     saveCustomerAccountDetails(card_holder:ID!,acc_no:String!,valid_date:String!,name_on_card:String!):CustomerAccount!
