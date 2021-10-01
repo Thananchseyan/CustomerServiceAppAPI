@@ -203,6 +203,10 @@ module.exports=gql`
     }
     
     type Query{
+    SP_me:ServiceProvider!
+    Customer_me:Customer!
+    moderator_me:Moderator!
+    worker_me:Worker!
     getServices:[Service]
     showProvinces:[Province!]!
     showDistricts:[District!]!
@@ -223,6 +227,7 @@ module.exports=gql`
     getMyOngoingWorks:[Appointment]
     getMyWorks:[Appointment]
     getMyFinishedWorks:[Appointment]
+    worker_getMyAssignedWorks:[Appointment]
     }
     
     type Mutation{
