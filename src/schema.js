@@ -105,7 +105,7 @@ module.exports=gql`
     appointment_id:String!
     starting_date:Date!
     duration:String
-    worker:[Worker!]!
+    worker:[Worker]
     state:String!
     paid:Boolean!
     }
@@ -219,6 +219,10 @@ module.exports=gql`
     showWorkers:[Worker]
     getMyWorkers:[Worker]
     getMyMessages:[Message] 
+    getMyBooking:[Booking]
+    getMyOngoingWorks:[Appointment]
+    getMyWorks:[Appointment]
+    getMyFinishedWorks:[Appointment]
     }
     
     type Mutation{
