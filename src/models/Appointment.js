@@ -29,6 +29,11 @@ const AppointmentSchema=new mongoose.Schema(
             type:String,
             enum:['going','finished','open'],
             default:'open'
+        },
+        paid:{
+            type:Boolean,
+            required:true,
+            default:false
         }
 
     }

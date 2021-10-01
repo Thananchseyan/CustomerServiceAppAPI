@@ -81,7 +81,7 @@ const ProviderSchema=new mongoose.Schema(
             lowercase:true,
             default:'registered',
             enum:['registered','approved','blocked']
-        },
+        }
 
     }
 );

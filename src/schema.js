@@ -106,7 +106,8 @@ module.exports=gql`
     starting_date:Date!
     duration:String
     worker:[Worker!]!
-    state:String 
+    state:String!
+    paid:Boolean!
     }
     
     type Payment{
