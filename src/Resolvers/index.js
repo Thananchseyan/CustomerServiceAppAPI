@@ -6,6 +6,7 @@ const Worker=require('./Worker');
 const Moderator=require('./Moderator');
 const Booking=require('./Booking');
 const Appointment=require('./Appointment');
+const CustomerReview=require('./CustomerReview');
 module.exports ={
     Query,
     Mutation,
@@ -14,5 +15,6 @@ module.exports ={
     Worker,
     Moderator,
     Booking,
-    Appointment
+    Appointment,
+    CustomerReview
 };

@@ -226,6 +226,7 @@ module.exports=gql`
     getMyBooking:[Booking]
     getMyOngoingWorks:[Appointment]
     getMyWorks:[Appointment]
+    getMyReviews:[CustomerReview]
     getMyFinishedWorks:[Appointment]
     worker_getMyAssignedWorks:[Appointment]
     }
