@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 //const mongoose=require('mongoose');
 
 module.exports={
-    addModerator: async (parent,{username,password,name,email,contact_no},{models,user})=>{
+    addModerator: async (parent,{username,password,name,nic,email,contact_no,address},{models,user})=>{
         console.log(user.id);
         const foundSP=await models.ServiceProvider.findById(user.id);
         if (!user){
@@ -19,8 +19,10 @@ module.exports={
                 username:username,
                 password:hashed,
                 name:name,
+                nic:nic,
                 email:email,
-                contact_no:contact_no
+                contact_no:contact_no,
+                address:address
             });
         }catch (err){
             throw new Error("Addition of Moderator Failed");
@@ -28,7 +30,7 @@ module.exports={
 
     },
 
-    addWorker:async (parent,{username,password,name,email,contact_no},{models,user})=>{
+    addWorker:async (parent,{username,password,name,nic,email,contact_no,address},{models,user})=>{
         const foundSP=await models.ServiceProvider.findById(user.id);
         const foundMod=await models.Moderator.findById(user.id);
         const hashed=await bcrypt.hash(password,10);
@@ -43,8 +45,10 @@ module.exports={
                     username:username,
                     password:hashed,
                     name:name,
+                    nic:nic,
                     email:email,
-                    contact_no:contact_no
+                    contact_no:contact_no,
+                    address:address
                 });
             }catch (err){
                 console.log(err);
@@ -58,8 +62,10 @@ module.exports={
                     username:username,
                     password:hashed,
                     name:name,
+                    nic:nic,
                     email:email,
-                    contact_no:contact_no
+                    contact_no:contact_no,
+                    address:address
                 });
             }catch (err){
                 console.log(err);

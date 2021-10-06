@@ -79,6 +79,8 @@ module.exports=gql`
     username:String!
     name:String!
     email:String!
+    nic:String!
+    address:String!
     contact_no:String!
     rating:Float!
     profile:String!
@@ -93,6 +95,8 @@ module.exports=gql`
     name:String!
     email:String!
     contact_no:String!
+    nic:String!
+    address:String!
     rating:Float!
     profile:String!
     no_of_vote:Int!
@@ -241,12 +245,12 @@ module.exports=gql`
     signINModerator(username:String!,password:String!):String!
     signINWorker(username:String!,password:String!):String!
     addService(service_name:String!,icon:String!):Service!
-    addModerator(username:String!,password:String!,name:String!,email:String!,contact_no:String!):Moderator!
+    addModerator(username:String!,password:String!,name:String!,nic:String!,email:String!,contact_no:String!,address:String!):Moderator!
     addProvince(provinceName:String!):Province!
     addDistrict(province:ID!,districtName:String!):District!
     addOwner(owner_name:String!,owner_NIC:String!,contact_no:String!):Owner!
     addMembership(membership_name:String!,membership_period:Int!,membership_value:Int!):Membership!
-    addWorker(username:String!,password:String!,name:String!,email:String!,contact_no:String!):Worker!
+    addWorker(username:String!,password:String!,name:String!,nic:String!,email:String!,contact_no:String!,address:String!):Worker!
     approveServiceProvider(username:String!):Boolean!
     blockServiceProvider(username:String!):Boolean!
     saveCustomerAccountDetails(acc_no:String!,valid_date:String!,name_on_card:String!):CustomerAccount!

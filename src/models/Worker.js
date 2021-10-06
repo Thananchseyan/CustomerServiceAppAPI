@@ -27,6 +27,15 @@ const WorkerSchema=new mongoose.Schema(
             type:String,
             required:true
         },
+        nic:{
+            type:String,
+            required:true,
+            unique:true
+        },
+        address:{
+            type:String,
+            required:true
+        },
         no_of_vote:{
             type:Number,
             default:0,
