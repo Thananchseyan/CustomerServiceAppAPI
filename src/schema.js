@@ -213,7 +213,8 @@ module.exports=gql`
     worker_me:Worker!
     getServices:[Service]
     showProvinces:[Province!]!
-    showDistricts:[District!]!
+    showDistricts:[District]
+    showDistricts_pagination(offset:Int!,page:Int!):[District!]!
     showOwners:[Owner!]!
     showCustomers:[Customer!]!
     getProvinceID(provinceName:String!):String!
