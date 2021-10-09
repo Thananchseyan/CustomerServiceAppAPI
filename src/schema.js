@@ -233,6 +233,7 @@ module.exports=gql`
     getMyWorks:[Appointment]
     getMyReviews:[CustomerReview]
     getMyFinishedWorks:[Appointment]
+    getMyNotification:[NotificationSP]
     worker_getMyAssignedWorks:[Appointment]
     }
     
