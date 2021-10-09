@@ -7,7 +7,7 @@ module.exports ={
         if (provider){
             sp_id=user.id;
         }else if (moderator){
-            sp_id=provider.serviceProvider;
+            sp_id=moderator.serviceProvider;
         }else{
             throw new Error("You cannot Query this");
         }
