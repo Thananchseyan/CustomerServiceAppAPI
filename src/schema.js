@@ -235,6 +235,7 @@ module.exports=gql`
     getMyFinishedWorks:[Appointment]
     getMyNotification:[NotificationSP]
     worker_getMyAssignedWorks:[Appointment]
+    worker_getMyNotification:[NotificationWorker]
     }
     
     type Mutation{
