@@ -206,6 +206,11 @@ module.exports=gql`
     images:[Image!]!
     }
     
+    type BookingFeed{
+    _id:String!
+    Count:Int
+    }
+    
     type Query{
     SP_me:ServiceProvider!
     Customer_me:Customer!
@@ -237,7 +242,7 @@ module.exports=gql`
     worker_getMyAssignedWorks:[Appointment]
     worker_getMyNotification:[NotificationWorker]
     customer_getMyNotification:[NotificationCustomer]
-    
+    bookingFeed:[BookingFeed]
     }
     
     type Mutation{
