@@ -206,7 +206,7 @@ module.exports=gql`
     images:[Image!]!
     }
     
-    type BookingFeed{
+    type CountFeed{
     _id:String!
     Count:Int
     }
@@ -242,7 +242,8 @@ module.exports=gql`
     worker_getMyAssignedWorks:[Appointment]
     worker_getMyNotification:[NotificationWorker]
     customer_getMyNotification:[NotificationCustomer]
-    bookingFeed:[BookingFeed]
+    bookingFeed:[CountFeed]
+    workStats:[CountFeed]
     }
     
     type Mutation{
