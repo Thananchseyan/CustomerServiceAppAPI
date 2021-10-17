@@ -15,6 +15,11 @@ const ImageSchema=new mongoose.Schema(
         descripton:{
             type:String,
             default:"CSA Image"
+        },
+        date:{
+            type:Date,
+            required:true,
+            default:Date.now
         }
     }
 );

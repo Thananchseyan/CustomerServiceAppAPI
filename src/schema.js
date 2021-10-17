@@ -171,6 +171,7 @@ module.exports=gql`
     name:String!
     url:String!
     description:String
+    date:Date!
     }
     
     type Customer{

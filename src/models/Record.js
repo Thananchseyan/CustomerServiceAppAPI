@@ -6,11 +6,12 @@ const RecordSchema=new mongoose.Schema(
             required:true,
             unique:true
         },
-        images:{
+        images:[
+            {
             type:mongoose.Schema.Types.ObjectId,
             ref:'Image'
-        }
-
+            }
+        ]
     }
 );
 const Record=mongoose.model('Record',RecordSchema);
