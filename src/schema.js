@@ -247,6 +247,7 @@ module.exports=gql`
     bookingFeed:[CountFeed]
     workStats:[CountFeed]
     getMyRole:String!
+    getAppointment(appointment_id:String!):[Appointment]
     }
     
     type Mutation{
