@@ -283,6 +283,6 @@ module.exports=gql`
     CustomerReadNotification(id:ID!):Boolean!
     ServiceProviderReadNotification(id:ID!):Boolean!
     WorkerReadNotification(id:ID!):Boolean!
-    setPassword(password:String!):Worker!
+    setPassword(password:String!):Boolean!
     }
 `;
