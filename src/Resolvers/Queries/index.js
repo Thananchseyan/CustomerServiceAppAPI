@@ -5,6 +5,7 @@ const Message=require('./MessageQueries');
 const Admin=require('./Admin');
 const Worker=require('./Worker');
 const Moderator=require('./Moderator');
+const RoleQuery=require('./RoleQuery');
 module.exports={
     ...Query,
     ...Customer,
@@ -12,5 +13,6 @@ module.exports={
     ...Message,
     ...Admin,
     ...Worker,
-    ...Moderator
+    ...Moderator,
+    ...RoleQuery
 }

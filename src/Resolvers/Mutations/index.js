@@ -6,6 +6,7 @@ const Moderator=require('./Moderator');
 const Customer=require('./Customer');
 const Image=require('./Image');
 const Worker=require('./Worker');
+const ProfileMutation=require('./ProfileMutations');
 module.exports={
     ...Admin,
     ...Mutation,
@@ -14,5 +15,6 @@ module.exports={
     ...Message,
     ...Customer,
     ...Image,
-    ...Worker
+    ...Worker,
+    ...ProfileMutation
 }
