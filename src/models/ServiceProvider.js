@@ -81,6 +81,11 @@ const ProviderSchema=new mongoose.Schema(
             lowercase:true,
             default:'registered',
             enum:['registered','approved','blocked']
+        },
+        profile:{
+            type:String,
+            required:true,
+            default:"sp.jpg"
         }
 
     }

@@ -61,6 +61,7 @@ module.exports=gql`
     workingRange:[String!]!
     joined_at:Date!
     state:String!
+    profile:String!
     }
     
     type CustomerReview{
@@ -284,5 +285,6 @@ module.exports=gql`
     ServiceProviderReadNotification(id:ID!):Boolean!
     WorkerReadNotification(id:ID!):Boolean!
     setPassword(password:String!):Boolean!
+    setProfilePic(picture:String!):Boolean!
     }
 `;
