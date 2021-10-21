@@ -291,5 +291,6 @@ module.exports=gql`
     setPassword(password:String!):Boolean!
     setProfilePic(picture:String!):Boolean!
     readMessage(id:ID):Boolean!
+    sendRatingToCustomer(Customer:ID!,rating:Int!):Boolean!
     }
 `;
