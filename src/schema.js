@@ -4,24 +4,24 @@ module.exports=gql`
     scalar DateTime
     
     type Province{
-    id:ID!
+    _id:ID!
     provinceName:String
     }
     
     type District{
-    id:ID!
+    _id:ID!
     province:Province!
     districtName:String!
     }
     
     type SystemAdmin{
-    id:ID!
+    _id:ID!
     username:String!
     profile:String!
     }
     
     type Owner{
-    id:ID!
+    _id:ID!
     owner_name:String!
     owner_NIC:String!
     contact_no:String!
@@ -29,7 +29,7 @@ module.exports=gql`
     }
     
     type Message{
-    id:ID!
+    _id:ID!
     by:String!
     to:String!
     message:String!
@@ -38,7 +38,7 @@ module.exports=gql`
     }
     
     type Membership{
-    id:ID!
+    _id:ID!
     membership_name:String!
     membership_period:Int!
     membership_value:Int!
@@ -46,7 +46,7 @@ module.exports=gql`
     }
     
     type ServiceProvider{
-    id:ID!
+    _id:ID!
     username:String!
     name:String!
     address:String!
@@ -65,7 +65,7 @@ module.exports=gql`
     }
     
     type CustomerReview{
-    id:ID!
+    _id:ID!
     by:Customer!
     to:ServiceProvider!
     createdAt:Date!
@@ -75,7 +75,7 @@ module.exports=gql`
     }
     
     type Moderator{
-    id:ID!
+    _id:ID!
     serviceProvider:ServiceProvider!
     username:String!
     name:String!
@@ -90,7 +90,7 @@ module.exports=gql`
     }
     
     type Worker{
-    id:ID!
+    _id:ID!
     serviceProvider:ServiceProvider!
     username:String!
     name:String!
@@ -105,7 +105,7 @@ module.exports=gql`
     }
     
     type Appointment{
-    id:ID!
+    _id:ID!
     booking:Booking!
     appointment_id:String!
     starting_date:Date!
@@ -116,7 +116,7 @@ module.exports=gql`
     }
     
     type Payment{
-    id:ID!
+    _id:ID!
     from:String!
     to:String!
     appointment:Appointment!
@@ -125,7 +125,7 @@ module.exports=gql`
     }
     
     type NotificationCustomer{
-    id:ID!
+    _id:ID!
     customer:Customer!
     message:String!
     date:Date!
@@ -133,7 +133,7 @@ module.exports=gql`
     }
     
     type NotificationSP{
-    id:ID!
+    _id:ID!
     serviceProvider:ServiceProvider!
     message:String!
     date:Date!
@@ -141,7 +141,7 @@ module.exports=gql`
     }
     
     type NotificationWorker{
-    id:ID!
+    _id:ID!
     worker:Worker!
     message:String!
     date:Date!
@@ -149,7 +149,7 @@ module.exports=gql`
     }
     
     type Booking{
-    id:ID!
+    _id:ID!
     by:Customer!
     to:ServiceProvider!
     state:String
@@ -161,14 +161,14 @@ module.exports=gql`
     }
     
     type Service{
-    id:ID!
+    _id:ID!
     service_name:String!
     description:String
     icon:String!
     }
     
     type Image{
-    id:ID!
+    _id:ID!
     name:String!
     url:String!
     description:String
@@ -176,7 +176,7 @@ module.exports=gql`
     }
     
     type Customer{
-    id:ID!
+    _id:ID!
     username:String!
     profile:String
     name:String!
@@ -188,7 +188,7 @@ module.exports=gql`
     }
     
     type CustomerAccount{
-    id:ID!
+    _id:ID!
     card_holder:Customer!
     acc_no:String!
     valid_date:String!
@@ -196,14 +196,14 @@ module.exports=gql`
     }
     
     type WorkStation{
-    id:ID!
+    _id:ID!
     address:String!
     district:District!
     customer:Customer!
     }
     
     type Record{
-    id:ID!
+    _id:ID!
     appointment_id:String!
     images:[Image!]!
     }
@@ -233,10 +233,10 @@ module.exports=gql`
     sortingByRating:[ServiceProvider]
     getMembership(membership_name:String!):Membership!
     showWorkers:[Worker]
-    getMyWorkers:[Worker]
-    getMyMessages:[Message] 
-    getMyBooking:[Booking]
-    getMyOngoingWorks:[Appointment]
+    getMyWorkers(offset:Int!,page:Int!):[Worker]
+    getMyMessages(offset:Int!,page:Int!):[Message] 
+    getMyBooking(offset:Int!,page:Int!):[Booking]
+    getMyOngoingWorks(offset:Int!,page:Int!):[Appointment]
     getMyWorks:[Appointment]
     getMyReviews:[CustomerReview]
     getMyFinishedWorks:[Appointment]
@@ -287,5 +287,6 @@ module.exports=gql`
     WorkerReadNotification(id:ID!):Boolean!
     setPassword(password:String!):Boolean!
     setProfilePic(picture:String!):Boolean!
+    readMessage(id:ID):Boolean!
     }
 `;

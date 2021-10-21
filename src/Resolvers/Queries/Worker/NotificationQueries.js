@@ -1,6 +1,8 @@
 const mongoose=require('mongoose');
 module.exports = {
     worker_getMyNotification:async (parent,args,{models,user})=>{
+        console.log(user.id);
+        console.log(user._id);
         const worker=await models.Worker.findById(user.id);
         if (!worker){
             throw new Error("You cannot query this");

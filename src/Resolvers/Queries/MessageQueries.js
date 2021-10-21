@@ -1,5 +1,5 @@
 module.exports={
-    getMyMessages: async (parent,args,{models,user})=>{
+    getMyMessages: async (parent,{offset,page},{models,user})=>{
         const provider=await models.ServiceProvider.findById(user.id);
         const moderator=await models.Moderator.findById(user.id);
         const worker=await models.Worker.findById(user.id);
@@ -16,17 +16,62 @@ module.exports={
         }else{
             throw new Error("You have to signin");
         }
-        return models.Message.aggregate([
-            {
-                $match:{
-                    to:user_name
-                }
-            },
-            {
-                $sort:{
-                    received_date:-1
-                }
+        try{
+            if (page===1){
+                return models.Message.aggregate([
+                    {
+                        $match: {
+                            $and: [
+                                {
+                                    to: user_name
+                                },
+                                {
+                                    read: false
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        $sort:{
+                            received_date:-1
+                        }
+                    },
+                    {
+                        $limit:offset
+                    }
+                ]);
+            }else if (page>1) {
+                return models.Message.aggregate([
+                    {
+                        $match: {
+                            $and: [
+                                {
+                                    to: user_name
+                                },
+                                {
+                                    read: false
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        $sort:{
+                            received_date:-1
+                        }
+                    },
+                    {
+                        $skip:offset*(page-1)
+
+                    },
+                    {
+                        $limit:offset
+                    }
+                ]);
             }
-        ]);
+        }catch (err){
+            console.log(err);
+            throw new Error("cannot retrive messages");
+        }
+
     }
 }
