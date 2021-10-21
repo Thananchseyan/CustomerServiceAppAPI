@@ -65,6 +65,58 @@ module.exports={
         }else{
             throw new Error("Page 1 is minimum");
         }
+    },
+    getMyModerators: async (parent,{offset,page},{models,user})=>{
+        const provider=await models.ServiceProvider.findById(user.id);
+        if (!provider){
+            throw new Error("You aren't SP");
+        }
+        try{
+            if (page===1){
+                return models.Moderator.aggregate([
+                    {
+                        $match:
+                            {
+                                serviceProvider:mongoose.Types.ObjectId(user.id)
+                            }
+                    },
+                    {
+                        $sort:
+                            {
+                                name:1
+                            }
+                    },
+                    {
+                        $limit:offset
+                    }
+                ]);
+            }else if (page>1) {
+                return models.Moderator.aggregate([
+                    {
+                        $match:
+                            {
+                                serviceProvider:mongoose.Types.ObjectId(user.id)
+                            }
+                    },
+                    {
+                        $sort:
+                            {
+                                name:1
+                            }
+                    },
+                    {
+                        $skip:offset*(page-1)
+
+                    },
+                    {
+                        $limit:offset
+                    }
+                ]);
+            }
+        }catch (err){
+            console.log(err);
+            throw new Error("Error while fetching");
+        }
     }
 }
 
