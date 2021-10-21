@@ -131,6 +131,47 @@ module.exports={
             console.log(err);
             throw new Error("Error in fetching info");
         }
+    },
+
+    ratingStats: async (parent,args,{models,user})=>{
+        const provider=await models.ServiceProvider.findById(user.id);
+        const moderator=await models.Moderator.findById(user.id);
+        let sp_id=null;
+        if (provider){
+            sp_id=user.id;
+        }else if (moderator){
+            sp_id=moderator.serviceProvider;
+        }else{
+            throw new Error("You cannot do this query");
+        }
+        try{
+            return models.CustomerReview.aggregate([
+                {
+                    $match:
+                        {
+                            to:mongoose.Types.ObjectId(sp_id)
+                        }
+                },
+                {
+                    $group:
+                        {
+                            _id: "$rating",
+                            Count: {
+                                $sum: 1
+                            }
+                        }
+                },
+                {
+                    $sort:
+                        {
+                            _id: 1
+                        }
+                }
+            ]);
+        }catch (err){
+            console.log(err);
+            throw new Error("Cannot fetch now");
+        }
     }
 
 }

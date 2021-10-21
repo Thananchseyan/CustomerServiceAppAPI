@@ -14,7 +14,7 @@ const ReviewSchema=new mongoose.Schema(
         content:{
             type:String,
             required:true,
-            default:""
+            default:"no comments"
         },
         rating:{
             type:Number,

@@ -249,6 +249,7 @@ module.exports=gql`
     workStats:[CountFeed]
     getMyRole:String!
     getAppointment(appointment_id:String!):[Appointment]
+    ratingStats:[CountFeed]
     }
     
     type Mutation{
@@ -271,6 +272,7 @@ module.exports=gql`
     blockServiceProvider(username:String!):Boolean!
     saveCustomerAccountDetails(acc_no:String!,valid_date:String!,name_on_card:String!):CustomerAccount!
     sendReview(to:ID!,rating:Float!,content:String):CustomerReview!
+    updateCustomerReview(CustomerReview:ID!):Boolean
     sendMessage(to:String!,message:String!):Message!
     booking(to:ID!,workStationAddress:String!,workStationDistrict:String!,description:String!):Booking!
     appointment(booking:ID!,appointment_id:String!,starting_date:Date!,duration:String!,worker:[ID]):Appointment!
