@@ -250,6 +250,10 @@ module.exports=gql`
     getMyRole:String!
     getAppointment(appointment_id:String!):[Appointment]
     ratingStats:[CountFeed]
+    customer_getMyOngoingWorks:[Appointment]
+    customer_getMyFinishedWorks:[Appointment]
+    customer_getMyWorks:[Appointment]
+    customer_getMyBookings:[Booking]
     }
     
     type Mutation{

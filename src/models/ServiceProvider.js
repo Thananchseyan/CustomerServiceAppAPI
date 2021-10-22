@@ -6,7 +6,9 @@ const ProviderSchema=new mongoose.Schema(
         username:{
             type:String,
             required:true,
-            unique:true
+            unique:true,
+            lowercase:true,
+            index:"text"
         },
         password:{
             type:String,
