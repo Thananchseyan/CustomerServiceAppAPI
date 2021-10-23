@@ -260,6 +260,8 @@ module.exports=gql`
     getCountMessages:[CountFeed]
     getCountNotification:[CountFeed]
     getCountModerators:[CountFeed]
+    getModerator(username:String!):[Moderator]
+    getWorker(username:String!):[Worker]
     }
     
     type Mutation{

@@ -6,6 +6,7 @@ const personalQueries=require('./PersonalQueries');
 const NotificationQueries=require('./NotificationQueries');
 const DashboardQueries=require('./DashBoardQueries');
 const CountQueries=require('./CountQueries');
+const SearchQueries=require('./SearchQueries');
 module.exports={
     ...Registration,
     ...WorkerQueries,
@@ -14,5 +15,6 @@ module.exports={
     ...personalQueries,
     ...NotificationQueries,
     ...DashboardQueries,
-    ...CountQueries
+    ...CountQueries,
+    ...SearchQueries
 }
