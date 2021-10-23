@@ -20,16 +20,10 @@ module.exports={
             if (page===1){
                 return models.Message.aggregate([
                     {
-                        $match: {
-                            $and: [
-                                {
-                                    to: user_name
-                                },
-                                {
-                                    read: false
-                                }
-                            ]
-                        }
+                        $match:
+                            {
+                                to: user_name
+                            }
                     },
                     {
                         $sort:{
@@ -43,16 +37,10 @@ module.exports={
             }else if (page>1) {
                 return models.Message.aggregate([
                     {
-                        $match: {
-                            $and: [
-                                {
-                                    to: user_name
-                                },
-                                {
-                                    read: false
-                                }
-                            ]
-                        }
+                        $match:
+                            {
+                                to: user_name
+                            }
                     },
                     {
                         $sort:{

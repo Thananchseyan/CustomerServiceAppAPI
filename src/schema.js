@@ -254,6 +254,12 @@ module.exports=gql`
     customer_getMyFinishedWorks:[Appointment]
     customer_getMyWorks:[Appointment]
     customer_getMyBookings:[Booking]
+    getCountWorkers:[CountFeed]
+    getCountAppointments:[CountFeed]
+    getCountBooking:[CountFeed]
+    getCountMessages:[CountFeed]
+    getCountNotification:[CountFeed]
+    getCountModerators:[CountFeed]
     }
     
     type Mutation{
