@@ -310,5 +310,7 @@ module.exports=gql`
     readMessage(id:ID):Boolean!
     sendRatingToCustomer(Customer:ID!,rating:Int!):Boolean!
     sendRatingToWorker(worker:ID!,rating:Int!):Boolean!
+    removeWorker(worker:ID!):Boolean
+    removeModerator(moderator:ID!):Boolean
     }
 `;

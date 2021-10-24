@@ -9,6 +9,8 @@ module.exports={
         });
         if(!worker){
             throw new AuthenticationError('Error Sign In in');
+        }else if (worker.left_date!=null){
+            throw new Error("You left the company");
         }
         const valid=await bcrypt.compare(password,worker.password);
         if (!valid){

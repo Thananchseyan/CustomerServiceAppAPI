@@ -74,7 +74,43 @@ module.exports={
         }else{
             throw new Error("You didn't have previlage");
         }
-
-
+    },
+    removeWorker:async (parent,{worker},{models,user})=>{
+        const provider=await models.ServiceProvider.findById(user.id);
+        if (provider){
+            throw new Error("You cannot do this");
+        }
+        try{
+            models.Worker.updateOne({_id:worker},{$set:{left_date:Date.now()}},function(err,docs){
+                if (err){
+                    console.log(err);
+                }else{
+                    console.log(docs);
+                }
+            });
+            return true;
+        }catch (err){
+            console.log(err);
+            return false;
+        }
+    },
+    removeModerator:async (parent,{moderator},{models,user})=>{
+        const provider=await models.ServiceProvider.findById(user.id);
+        if (provider){
+            throw new Error("You cannot do this");
+        }
+        try{
+            models.Moderator.updateOne({_id:moderator},{$set:{left_date:Date.now()}},function(err,docs){
+                if (err){
+                    console.log(err);
+                }else{
+                    console.log(docs);
+                }
+            });
+            return true;
+        }catch (err){
+            console.log(err);
+            return false;
+        }
     }
 }

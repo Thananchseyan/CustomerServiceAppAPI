@@ -7,8 +7,11 @@ module.exports={
         const moderator=await models.Moderator.findOne({
             username:username
         });
+        //console.log(moderator.left_date);
         if(!moderator){
             throw new AuthenticationError('Error Sign In in');
+        }else if (moderator.left_date!=null){
+            throw new Error("You left the company");
         }
         const valid=await bcrypt.compare(password,moderator.password);
         if (!valid){
