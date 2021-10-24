@@ -241,7 +241,7 @@ module.exports=gql`
     getMyWorks(offset:Int!,page:Int!):[Appointment]
     getMyReviews:[CustomerReview]
     getMyFinishedWorks(offset:Int!,page:Int!):[Appointment]
-    getMyNotification:[NotificationSP]
+    getMyNotification(offset:Int!,page:Int!):[NotificationSP]
     worker_getMyAssignedWorks(offset:Int!,page:Int!):[Appointment]
     worker_getMyOngoingWorks(offset:Int!,page:Int!):[Appointment]
     worker_getMyFinishedWorks(offset:Int!,page:Int!):[Appointment]
