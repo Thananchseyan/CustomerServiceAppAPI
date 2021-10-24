@@ -312,5 +312,7 @@ module.exports=gql`
     sendRatingToWorker(worker:ID!,rating:Int!):Boolean!
     removeWorker(worker:ID!):Boolean
     removeModerator(moderator:ID!):Boolean
+    pushService(service:String!):Boolean
+    pushDistrict(district:String!):Boolean
     }
 `;

@@ -77,7 +77,7 @@ module.exports={
     },
     removeWorker:async (parent,{worker},{models,user})=>{
         const provider=await models.ServiceProvider.findById(user.id);
-        if (provider){
+        if (!provider){
             throw new Error("You cannot do this");
         }
         try{
@@ -96,7 +96,7 @@ module.exports={
     },
     removeModerator:async (parent,{moderator},{models,user})=>{
         const provider=await models.ServiceProvider.findById(user.id);
-        if (provider){
+        if (!provider){
             throw new Error("You cannot do this");
         }
         try{
