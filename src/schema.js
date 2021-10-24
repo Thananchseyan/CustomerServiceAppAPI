@@ -267,6 +267,7 @@ module.exports=gql`
     getCountModerators:[CountFeed]
     getModerator(username:String!):[Moderator]
     getWorker(username:String!):[Worker]
+    getMySP:ServiceProvider
     }
     
     type Mutation{
@@ -277,6 +278,7 @@ module.exports=gql`
     signUPCustomer(username:String!,password:String!,name:String!,contact_no:String!,email:String!):Customer!
     signINCustomer(username:String!,password:String!):String!
     signINModerator(username:String!,password:String!):String!
+    signINModSP(username:String!,password:String!):String!
     signINWorker(username:String!,password:String!):String!
     addService(service_name:String!,icon:String!):Service!
     addModerator(username:String!,password:String!,name:String!,nic:String!,email:String!,contact_no:String!,address:String!):Moderator!

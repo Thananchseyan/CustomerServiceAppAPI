@@ -38,5 +38,16 @@ module.exports = {
             console.log(err);
             throw new Error("Request failed");
         }
+    },
+    getMySP:async (parent,args,{models,user})=>{
+        const provider=await models.ServiceProvider.findById(user.id);
+        const moderator=await models.Moderator.findById(user.id);
+        if (provider){
+            return provider;
+        }else if (moderator){
+            return models.ServiceProvider.findById(moderator.serviceProvider);
+        }else{
+            throw new Error("YOu cannot do this");
+        }
     }
 }
