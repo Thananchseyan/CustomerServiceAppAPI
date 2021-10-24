@@ -247,6 +247,7 @@ module.exports=gql`
     customer_getMyNotification:[NotificationCustomer]
     bookingFeed:[CountFeed]
     workStats:[CountFeed]
+    worker_workStats:[CountFeed]
     getMyRole:String!
     getAppointment(appointment_id:String!):[Appointment]
     ratingStats:[CountFeed]
@@ -304,5 +305,6 @@ module.exports=gql`
     setProfilePic(picture:String!):Boolean!
     readMessage(id:ID):Boolean!
     sendRatingToCustomer(Customer:ID!,rating:Int!):Boolean!
+    sendRatingToWorker(worker:ID!,rating:Int!):Boolean!
     }
 `;
