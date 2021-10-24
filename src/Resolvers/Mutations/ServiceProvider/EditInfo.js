@@ -1,7 +1,8 @@
 module.exports = {
     pushService:async (parent,{service},{models,user})=>{
         const provider=await models.ServiceProvider.findById(user.id);
-        if (!provider){
+        const moderator=await models.Moderator.findById(user.id);
+        if (!provider && !moderator ){
             throw new Error("You cannot do this");
         }
         try{
@@ -20,7 +21,8 @@ module.exports = {
     },
     pushDistrict:async (parent,{district},{models,user})=>{
         const provider=await models.ServiceProvider.findById(user.id);
-        if (!provider){
+        const moderator=await models.Moderator.findById(user.id);
+        if (!provider && !moderator ){
             throw new Error("You cannot do this");
         }
         try{
