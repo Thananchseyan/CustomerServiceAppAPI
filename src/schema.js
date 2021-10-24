@@ -246,6 +246,8 @@ module.exports=gql`
     worker_getMyOngoingWorks(offset:Int!,page:Int!):[Appointment]
     worker_getMyFinishedWorks(offset:Int!,page:Int!):[Appointment]
     worker_getMyNotification(offset:Int!,page:Int!):[NotificationWorker]
+    worker_SearchMyOngoingWorks(id:String!):[Appointment]
+    worker_SearchMyFinishedWorks(id:String!):[Appointment]
     customer_getMyNotification:[NotificationCustomer]
     bookingFeed:[CountFeed]
     workStats:[CountFeed]
