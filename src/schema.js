@@ -268,6 +268,9 @@ module.exports=gql`
     getModerator(username:String!):[Moderator]
     getWorker(username:String!):[Worker]
     getMySP:ServiceProvider
+    searchBooking(username:String!):[Booking]
+    searchFinishAppointment(id:String!):[Appointment]
+    searchOpenAppointment(id:String!):[Appointment]
     }
     
     type Mutation{
