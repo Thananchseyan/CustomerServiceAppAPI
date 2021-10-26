@@ -265,6 +265,7 @@ module.exports=gql`
     getCountMessages:[CountFeed]
     getCountNotification:[CountFeed]
     getCountModerators:[CountFeed]
+    getCountAssignedAppointments:[CountFeed]
     getModerator(username:String!):[Moderator]
     getWorker(username:String!):[Worker]
     getMySP:ServiceProvider
