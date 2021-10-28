@@ -228,7 +228,8 @@ module.exports=gql`
     districtsByProvince(ProvinceName:String!):[District!]!
     showServiceProviders:[ServiceProvider!]!
     checkDistrictOnServiceProvider(districtName:String!):[ServiceProvider]
-    getServiceProvidersByService(service:String!):[ServiceProvider] 
+    getServiceProvidersByService(service:String!):[ServiceProvider]
+    getServiceProviderByDistrictService(district:String!,service:String!):[ServiceProvider]
     defaultSorting:[ServiceProvider]
     sortingByRating:[ServiceProvider]
     getMembership(membership_name:String!):Membership!

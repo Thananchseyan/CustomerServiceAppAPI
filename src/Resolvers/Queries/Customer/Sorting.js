@@ -56,5 +56,55 @@ module.exports = {
                 }
             ]
         );
+    },
+    getServiceProviderByDistrictService:async (parent,{district,service},{models,user})=>{
+        const redis=new RegExp(district,"i");
+        const reser=new RegExp(service,"i");
+        const customer=await models.Customer.findById(user.id);
+        if (!customer){
+            throw new Error("You cannot query this");
+        }
+        try{
+            return models.ServiceProvider.aggregate([
+                {
+                    $unwind:
+                        {
+                            path: "$service"
+                        }
+                },
+                {
+                    $unwind:
+                        {
+                            path: "$workingRange"
+                        }
+                },
+                {
+                    $match:
+                        {
+                            $and:
+                            [
+                                {
+                                    service:
+                                        {
+                                            $regex:reser
+                                        }
+                                },
+                                {
+                                    workingRange:
+                                        {
+                                            $regex:redis
+                                        }
+                                },
+                                {
+                                    state:"approved"
+                                }
+                            ]
+                        }
+                }
+            ]);
+        }catch (err){
+            console.log(err);
+            throw new Error("Error occurred while search");
+        }
     }
 }
