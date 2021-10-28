@@ -249,6 +249,7 @@ module.exports=gql`
     worker_getMyNotification(offset:Int!,page:Int!):[NotificationWorker]
     worker_SearchMyOngoingWorks(id:String!):[Appointment]
     worker_SearchMyFinishedWorks(id:String!):[Appointment]
+    worker_SearchMyWorks(id:String!):[Appointment]
     customer_getMyNotification:[NotificationCustomer]
     bookingFeed:[CountFeed]
     workStats:[CountFeed]
@@ -273,6 +274,7 @@ module.exports=gql`
     searchBooking(username:String!):[Booking]
     searchFinishAppointment(id:String!):[Appointment]
     searchOpenAppointment(id:String!):[Appointment]
+    searchSPByUsername(username:String!):[ServiceProvider]
     }
     
     type Mutation{
