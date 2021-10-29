@@ -56,7 +56,7 @@ module.exports=gql`
     rating:Float!
     bank_acc_no:String!
     owner:Owner!
-    service:[String!]!
+    service:[String]
     membership:Membership!
     workingRange:[String!]!
     joined_at:Date!
@@ -278,6 +278,12 @@ module.exports=gql`
     searchFinishAppointment(id:String!):[Appointment]
     searchOpenAppointment(id:String!):[Appointment]
     searchSPByUsername(username:String!):[ServiceProvider]
+    UniqueSearchAppointment(appointment:ID!):Appointment
+    UniqueSearchModerator(moderator:ID!):Moderator
+    UniqueSearchWorker(worker:ID!):Worker
+    UniqueSearchSP(provider:ID!):ServiceProvider
+    UniqueGetCustomerReview(username:String!):[CustomerReview]
+    UniqueSearchBooking(username:String!):[Booking]
     }
     
     type Mutation{

@@ -6,6 +6,7 @@ const Admin=require('./Admin');
 const Worker=require('./Worker');
 const Moderator=require('./Moderator');
 const RoleQuery=require('./RoleQuery');
+const UniqueSearchQueries=require('./UniqueSearchQueries');
 module.exports={
     ...Query,
     ...Customer,
@@ -14,5 +15,6 @@ module.exports={
     ...Admin,
     ...Worker,
     ...Moderator,
-    ...RoleQuery
+    ...RoleQuery,
+    ...UniqueSearchQueries
 }

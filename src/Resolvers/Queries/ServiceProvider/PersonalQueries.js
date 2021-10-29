@@ -66,7 +66,7 @@ module.exports = {
         }
     },
     getMySP:async (parent,args,{models,user})=>{
-        const provider=await models.ServiceProvider.findById(user.id);
+        const provider=await models.ServiceProvider.findById(mongoose.Types.ObjectId(user.id));
         const moderator=await models.Moderator.findById(user.id);
         if (provider){
             return provider;
