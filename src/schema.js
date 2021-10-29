@@ -242,6 +242,7 @@ module.exports=gql`
     getMyWorks(offset:Int!,page:Int!):[Appointment]
     getMyReviews(offset:Int!,page:Int!):[CustomerReview]
     getMyFinishedWorks(offset:Int!,page:Int!):[Appointment]
+    getMyUnpaidWorks(offset:Int!,page:Int!):[Appointment]
     getMyNotification(offset:Int!,page:Int!):[NotificationSP]
     worker_getMyAssignedWorks(offset:Int!,page:Int!):[Appointment]
     worker_getMyOngoingWorks(offset:Int!,page:Int!):[Appointment]
@@ -309,6 +310,7 @@ module.exports=gql`
     initiateAppointment(appointment_id:String!):Boolean
     finishAppointment(appointment_id:String!):Boolean
     payment(from:String!,to:String!,appointment:ID!,amount:Float!):Payment!
+    confirmPayment(appointment:ID!):Boolean
     saveImage(name:String!,url:String!,description:String):Image!
     addToCustomerNotification(customer:ID!,message:String!):NotificationCustomer!
     addToServiceProviderNotification(serviceProvider:ID!,message:String!):NotificationSP!
