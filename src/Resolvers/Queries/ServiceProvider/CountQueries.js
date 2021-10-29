@@ -310,6 +310,55 @@ module.exports={
             console.log(err);
             throw new Error("Error while fetching data");
         }
+    },
+    getCountReviews:async (parent,args,{models,user})=>{
+        const provider=await models.ServiceProvider.findById(user.id);
+        const moderator=await models.Moderator.findById(user.id);
+        let sp_id=null;
+        if (provider){
+            sp_id=user.id;
+        }else if (moderator){
+            sp_id=moderator.serviceProvider;
+        }else{
+            throw new Error("You cannot query this");
+        }
+        try{
+            return models.CustomerReview.aggregate([
+                {
+                    $match:
+                        {
+                            to:mongoose.Types.ObjectId(sp_id)
+                        }
+                },
+                {
+                    $lookup:
+                        {
+                            from: 'serviceproviders',
+                            localField: 'to',
+                            foreignField: '_id',
+                            as: 'SP'
+                        }
+                },
+                {
+                    $unwind:
+                        {
+                            path: "$SP"
+                        }
+                },
+                {
+                    $group:
+                        {
+                            _id: "$SP.username",
+                            Count: {
+                                $sum: 1
+                            }
+                        }
+                }
+            ]);
+        }catch (err){
+            console.log(err);
+            throw new Error("Error while fetching data");
+        }
     }
 }
 
