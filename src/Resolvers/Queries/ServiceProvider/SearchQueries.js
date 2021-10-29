@@ -21,6 +21,9 @@ module.exports={
                                         {
                                             $regex:rename
                                         }
+                                },
+                                {
+                                    left_date:null
                                 }
                             ]
                         }
@@ -58,6 +61,9 @@ module.exports={
                                             {
                                                 $regex:rename
                                             }
+                                    },
+                                    {
+                                        left_date:null
                                     }
                                 ]
                         }

@@ -17,7 +17,15 @@ module.exports={
                 {
                     $match:
                         {
-                            serviceProvider:mongoose.Types.ObjectId(sp_id)
+                            $and:
+                            [
+                                {
+                                    serviceProvider:mongoose.Types.ObjectId(sp_id)
+                                },
+                                {
+                                    left_date:null
+                                }
+                            ]
                         }
                 },
                 {
@@ -278,7 +286,15 @@ module.exports={
                 {
                     $match:
                         {
-                            serviceProvider:mongoose.Types.ObjectId(user.id)
+                            $and:
+                            [
+                                {
+                                    serviceProvider:mongoose.Types.ObjectId(user.id)
+                                },
+                                {
+                                    left_date:null
+                                }
+                            ]
                         }
                 },
                 {
