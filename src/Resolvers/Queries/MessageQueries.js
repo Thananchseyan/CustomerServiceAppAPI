@@ -8,7 +8,8 @@ module.exports={
         if (provider){
             user_name=provider.username;
         }else if (moderator){
-            user_name=moderator.username;
+            const sp=await models.ServiceProvider.findById(moderator.serviceProvider);
+            user_name=sp.username;
         }else if (worker){
             user_name=worker.username;
         }else if (customer){
