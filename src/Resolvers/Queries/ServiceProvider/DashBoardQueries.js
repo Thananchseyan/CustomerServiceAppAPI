@@ -172,6 +172,86 @@ module.exports={
             console.log(err);
             throw new Error("Cannot fetch now");
         }
+    },
+    finishedWorkStats:async (parent,args,{models,user})=>{
+        const provider=await models.ServiceProvider.findById(user.id);
+        const moderator=await models.Moderator.findById(user.id);
+        let sp_id=null;
+        if (provider){
+            sp_id=user.id;
+        }else if (moderator){
+            sp_id=moderator.serviceProvider;
+        }else{
+            throw new Error("You cannot do this query");
+        }
+        try{
+            return models.Appointment.aggregate([
+                {
+                    $lookup:
+                        {
+                            from: 'bookings',
+                            localField: 'booking',
+                            foreignField: '_id',
+                            as: 'Booking'
+                        }
+                },
+                {
+                    $unwind:
+                        {
+                            path:"$Booking"
+                        }
+                },
+                {
+                    $match:
+                        {
+                            $and:
+                                [
+                                    {
+                                        state:"finished"
+                                    },
+                                    {
+                                        "Booking.to":mongoose.Types.ObjectId(sp_id)
+                                    }
+                                ]
+                        }
+                },
+                {
+                    $project:
+                        {
+                            finish_date:
+                                {
+                                    $dateToString:
+                                        {
+                                            format:"%Y-%m-%d",
+                                            date:"$finish_date"
+                                        }
+                                },
+                            state:"$state"
+                        }
+                },
+                {
+                    $group:
+                        {
+                            _id: "$finish_date",
+                            Count: {
+                                $sum: 1
+                            }
+                        }
+                },
+                {
+                    $sort:
+                        {
+                            _id: -1
+                        }
+                },
+                {
+                    $limit:5
+                }
+            ]);
+        }catch (err){
+            console.log(err);
+            throw new Error("Error while fetching")
+        }
     }
 
 }

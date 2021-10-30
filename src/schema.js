@@ -113,6 +113,7 @@ module.exports=gql`
     worker:[Worker]
     state:String!
     paid:Boolean!
+    finish_date:Date
     }
     
     type Payment{
@@ -254,6 +255,7 @@ module.exports=gql`
     customer_getMyNotification:[NotificationCustomer]
     bookingFeed:[CountFeed]
     workStats:[CountFeed]
+    finishedWorkStats:[CountFeed]
     worker_workStats:[CountFeed]
     getMyRole:String!
     getAppointment(appointment_id:String!):[Appointment]

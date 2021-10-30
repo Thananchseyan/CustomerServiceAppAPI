@@ -48,7 +48,7 @@ module.exports={
             throw new Error("You didn't have a previlage");
         }
         try{
-            models.Appointment.updateOne({appointment_id:appointment_id},{$set:{state:"finished"}},function (err,docs){
+            models.Appointment.updateOne({appointment_id:appointment_id},{$set:{state:"finished",finish_date:Date.now()}},function (err,docs){
                 if (err){
                     console.log(err);
                 }
