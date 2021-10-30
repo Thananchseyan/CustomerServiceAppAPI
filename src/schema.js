@@ -286,6 +286,7 @@ module.exports=gql`
     UniqueSearchSP(provider:ID!):ServiceProvider
     UniqueGetCustomerReview(username:String!):[CustomerReview]
     UniqueSearchBooking(username:String!):[Booking]
+    CheckUsername(username:String!):Boolean
     }
     
     type Mutation{

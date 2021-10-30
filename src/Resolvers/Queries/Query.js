@@ -67,6 +67,18 @@ module.exports = {
             },
 
         ]);
+    },
+
+    CheckUsername:async (parent,{username},{models})=>{
+        const provider=await models.ServiceProvider.findOne({username:username});
+        const moderator=await models.Moderator.findOne({username:username});
+        const worker=await models.Worker.findOne({username:username});
+        const customer=await models.Customer.findOne({username:username});
+        if (provider==null && moderator==null && worker==null && customer==null){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 
