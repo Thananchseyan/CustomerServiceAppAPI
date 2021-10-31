@@ -287,6 +287,7 @@ module.exports=gql`
     UniqueGetCustomerReview(username:String!):[CustomerReview]
     UniqueSearchBooking(username:String!):[Booking]
     CheckUsername(username:String!):Boolean
+    CheckAppointmentID(appointment_id:String!):Boolean
     }
     
     type Mutation{

@@ -79,7 +79,14 @@ module.exports = {
         }else{
             return false;
         }
+    },
+    CheckAppointmentID:async (parent,{appointment_id},{models})=>{
+        const appointment=await models.Appointment.findOne({appointment_id:appointment_id});
+        if (appointment){
+            return false;
+        }else{
+            return true;
+        }
     }
-
 
 };
