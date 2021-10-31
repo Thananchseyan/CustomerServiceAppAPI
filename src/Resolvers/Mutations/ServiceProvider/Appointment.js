@@ -62,5 +62,25 @@ module.exports={
             console.log(err);
             throw new Error("Failed to Finish");
         }
+    },
+    assignWorker:async (parent,{appointment,worker},{models,user})=>{
+        const provider=await models.ServiceProvider.findById(user.id);
+        const moderator=await models.Moderator.findById(user.id);
+        if (!provider && !moderator ){
+            throw new Error("You cannot do this");
+        }
+        try{
+            models.Appointment.updateOne({_id:appointment},{$push:{worker:worker}},function(err,docs){
+                if (err){
+                    console.log(err);
+                }else{
+                    console.log(docs);
+                }
+            });
+            return true;
+        }catch (err){
+            console.log(err);
+            return false;
+        }
     }
 }

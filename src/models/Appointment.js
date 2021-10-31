@@ -4,7 +4,8 @@ const AppointmentSchema=new mongoose.Schema(
         booking:{
             type:mongoose.Schema.Types.ObjectId,
             ref:'Booking',
-            required:true
+            required:true,
+            unique:true
         },
         appointment_id:{
             type:String,
