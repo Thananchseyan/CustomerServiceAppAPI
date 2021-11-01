@@ -5,6 +5,7 @@ const NotificationQueries=require('./NotificationQueries');
 const AppointmentQueries=require('./Appointment');
 const BookingQueries=require('./Booking');
 const SearchQueries=require('./SearchQueries');
+const ProviderQueries=require('./ServiceProvider');
 module.exports={
     ...Sort,
     ...ServiceSelection,
@@ -12,5 +13,6 @@ module.exports={
     ...NotificationQueries,
     ...AppointmentQueries,
     ...BookingQueries,
-    ...SearchQueries
+    ...SearchQueries,
+    ...ProviderQueries
 }
