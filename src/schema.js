@@ -338,6 +338,8 @@ module.exports=gql`
     removeModerator(moderator:ID!):Boolean
     pushService(service:String!):Boolean
     pushDistrict(district:String!):Boolean
+    RemoveService(service:String!):Boolean
+    RemoveDistrict(district:String!):Boolean
     editInfo(email:String,contact_no:String,address:String):Boolean
     }
 `;

@@ -2,11 +2,16 @@ module.exports = {
     pushService:async (parent,{service},{models,user})=>{
         const provider=await models.ServiceProvider.findById(user.id);
         const moderator=await models.Moderator.findById(user.id);
-        if (!provider && !moderator ){
-            throw new Error("You cannot do this");
+        let sp_id=null;
+        if (provider){
+            sp_id=user.id;
+        }else if (moderator){
+            sp_id=moderator.serviceProvider;
+        }else{
+            throw new Error("you cannot do this");
         }
         try{
-            models.ServiceProvider.updateOne({_id:user.id},{$push:{service:service}},function(err,docs){
+            models.ServiceProvider.updateOne({_id:sp_id},{$push:{service:service}},function(err,docs){
                 if (err){
                     console.log(err);
                 }else{
@@ -22,11 +27,16 @@ module.exports = {
     pushDistrict:async (parent,{district},{models,user})=>{
         const provider=await models.ServiceProvider.findById(user.id);
         const moderator=await models.Moderator.findById(user.id);
-        if (!provider && !moderator ){
-            throw new Error("You cannot do this");
+        let sp_id=null;
+        if (provider){
+            sp_id=user.id;
+        }else if (moderator){
+            sp_id=moderator.serviceProvider;
+        }else{
+            throw new Error("you cannot do this");
         }
         try{
-            models.ServiceProvider.updateOne({_id:user.id},{$push:{workingRange:district}},function(err,docs){
+            models.ServiceProvider.updateOne({_id:sp_id},{$push:{workingRange:district}},function(err,docs){
                 if (err){
                     console.log(err);
                 }else{
@@ -119,5 +129,55 @@ module.exports = {
         }else{
             throw new Error("You didn't have privilege");
         }
-    }
+    },
+    RemoveService:async (parent,{service},{models,user})=>{
+        const provider=await models.ServiceProvider.findById(user.id);
+        const moderator=await models.Moderator.findById(user.id);
+        let sp_id=null;
+        if (provider){
+            sp_id=user.id;
+        }else if (moderator){
+            sp_id=moderator.serviceProvider;
+        }else{
+            throw new Error("you cannot do this");
+        }
+        try{
+            models.ServiceProvider.updateOne({_id:sp_id},{$pull:{service:service}},function(err,docs){
+                if (err){
+                    console.log(err);
+                }else{
+                    console.log(docs);
+                }
+            });
+            return true;
+        }catch (err){
+            console.log(err);
+            return false;
+        }
+    },
+    RemoveDistrict:async (parent,{district},{models,user})=>{
+        const provider=await models.ServiceProvider.findById(user.id);
+        const moderator=await models.Moderator.findById(user.id);
+        let sp_id=null;
+        if (provider){
+            sp_id=user.id;
+        }else if (moderator){
+            sp_id=moderator.serviceProvider;
+        }else{
+            throw new Error("you cannot do this");
+        }
+        try{
+            models.ServiceProvider.updateOne({_id:sp_id},{$pull:{workingRange:district}},function(err,docs){
+                if (err){
+                    console.log(err);
+                }else{
+                    console.log(docs);
+                }
+            });
+            return true;
+        }catch (err){
+            console.log(err);
+            return false;
+        }
+    },
 }
