@@ -375,6 +375,63 @@ module.exports={
             console.log(err);
             throw new Error("Error while fetching data");
         }
+    },
+    getCountWorkerNotification:async (parent,{worker},{models,user})=>{
+        const provider=await models.ServiceProvider.findById(user.id);
+        const moderator=await models.Moderator.findById(user.id);
+        let sp_id=null;
+        if (provider){
+            sp_id=user.id;
+        }else if (moderator){
+            sp_id=moderator.serviceProvider;
+        }else{
+            throw new Error("You cannot Query this");
+        }
+        try{
+            return models.NotificationWorker.aggregate([
+                {
+                    $lookup:
+                        {
+                            from: 'workers',
+                            localField: 'worker',
+                            foreignField: '_id',
+                            as: 'Worker'
+                        }
+                },
+                {
+                    $unwind:
+                        {
+                            path: "$Worker"
+                        }
+                },
+                {
+                    $match:
+                        {
+                            $and:
+                                [
+                                    {
+                                        worker:mongoose.Types.ObjectId(worker)
+                                    },
+                                    {
+                                        "Worker.serviceProvider":mongoose.Types.ObjectId(sp_id)
+                                    }
+                                ]
+                        }
+                },
+                {
+                    $group:
+                        {
+                            _id: "$state",
+                            Count: {
+                                $sum: 1
+                            }
+                        }
+                }
+            ]);
+        }catch (err){
+            console.log(err);
+            throw new Error("Action failed");
+        }
     }
 }
 
