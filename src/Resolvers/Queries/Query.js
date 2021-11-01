@@ -54,18 +54,29 @@ module.exports = {
     },
 
     districtsByProvince: async (parent,{ProvinceName},{models})=> {
-        console.log(ProvinceName);
+        const proname=ProvinceName.toLowerCase();
         return models.District.aggregate([
             {
                 $lookup:
                     {
-                        from: "provinces",
-                        localField: "province",
-                        foreignField: "_id",
-                        as: "provinceD",
+                        from: 'provinces',
+                        localField: 'province',
+                        foreignField: '_id',
+                        as: 'Province'
                     }
             },
-
+            {
+                $unwind:
+                    {
+                        path:"$Province"
+                    }
+            },
+            {
+                $match:
+                    {
+                        "Province.provinceName":proname
+                    }
+            }
         ]);
     },
 
