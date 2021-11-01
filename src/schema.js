@@ -288,6 +288,7 @@ module.exports=gql`
     UniqueSearchBooking(username:String!):[Booking]
     CheckUsername(username:String!):Boolean
     CheckAppointmentID(appointment_id:String!):Boolean
+    getWorkerNotification(worker:ID!,offset:Int!,page:Int!):[NotificationWorker]
     }
     
     type Mutation{
