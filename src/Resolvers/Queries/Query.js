@@ -98,6 +98,17 @@ module.exports = {
         }else{
             return true;
         }
+    },
+
+    getMemberships: async (parent,args,{models})=>{
+        return models.Membership.aggregate([
+            {
+                $sort:
+                    {
+                        membership_value: -1
+                    }
+            }
+        ]);
     }
 
 };

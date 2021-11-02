@@ -233,6 +233,7 @@ module.exports=gql`
     getServiceProviderByDistrictService(district:String!,service:String!):[ServiceProvider]
     defaultSorting:[ServiceProvider]
     sortingByRating:[ServiceProvider]
+    getMemberships:[Membership]
     getMembership(membership_name:String!):Membership!
     showWorkers:[Worker]
     getMyModerators(offset:Int!,page:Int!):[Moderator]
