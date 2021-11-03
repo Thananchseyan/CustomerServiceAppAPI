@@ -114,6 +114,7 @@ module.exports=gql`
     state:String!
     paid:Boolean!
     finish_date:Date
+    cost:Float
     }
     
     type Payment{
@@ -318,7 +319,7 @@ module.exports=gql`
     updateCustomerReview(CustomerReview:ID!):Boolean
     sendMessage(to:String!,message:String!):Message!
     booking(to:ID!,workStationAddress:String!,workStationDistrict:String!,description:String!):Booking!
-    appointment(booking:ID!,appointment_id:String!,starting_date:Date!,duration:String!,worker:[ID]):Appointment!
+    appointment(booking:ID!,appointment_id:String!,starting_date:Date!,duration:String!,worker:[ID],cost:Float!):Appointment!
     assignWorker(appointment:ID!,worker:ID!):Boolean
     confirmBooking(id:ID!):Boolean
     cancelBooking(id:ID!):Boolean

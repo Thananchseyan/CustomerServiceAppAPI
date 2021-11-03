@@ -39,6 +39,10 @@ const AppointmentSchema=new mongoose.Schema(
         finish_date:{
             type:Date,
             default:null
+        },
+        cost:{
+            type:Number,
+            default:0
         }
 
     }

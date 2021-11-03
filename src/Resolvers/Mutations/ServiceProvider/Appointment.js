@@ -1,5 +1,5 @@
 module.exports={
-    appointment:async (parent,{booking,appointment_id,starting_date,duration,worker},{models,user})=>{
+    appointment:async (parent,{booking,appointment_id,starting_date,duration,worker,cost},{models,user})=>{
         const provider=await models.ServiceProvider.findById(user.id);
         const moderator=await models.Moderator.findById(user.id);
         if (!provider && !moderator){
@@ -11,7 +11,8 @@ module.exports={
                 appointment_id: appointment_id,
                 starting_date: starting_date,
                 duration: duration,
-                worker: worker
+                worker: worker,
+                cost:cost
             });
         }catch (err){
             throw new Error("Error in making Appointment");
