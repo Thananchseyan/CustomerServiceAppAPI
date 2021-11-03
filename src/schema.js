@@ -293,6 +293,7 @@ module.exports=gql`
     getWorkerNotification(worker:ID!,offset:Int!,page:Int!):[NotificationWorker]
     getCountWorkerNotification(worker:ID!):[CountFeed]
     getReviewsOfServiceProviders(provider:ID!):[CustomerReview]
+    getAppointmentAmount(appointment:ID!):[Appointment]
     }
     
     type Mutation{
