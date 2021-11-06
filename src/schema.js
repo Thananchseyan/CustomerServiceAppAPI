@@ -215,6 +215,12 @@ module.exports=gql`
     Count:Int
     }
     
+    type AmountFeed{
+    _id:String!
+    Amount:Float
+    }
+    
+   
     type Query{
     SP_me:ServiceProvider!
     Customer_me:Customer!
@@ -295,6 +301,8 @@ module.exports=gql`
     getReviewsOfServiceProviders(provider:ID!):[CustomerReview]
     getAppointmentAmount(appointment:ID!):[Appointment]
     admin_getOpenSP:[ServiceProvider]
+    admin_getDateWiseTotalPayment:[AmountFeed]
+    admin_getSpecificDateTotalPayment(date:String!):[AmountFeed]
     }
     
     type Mutation{
