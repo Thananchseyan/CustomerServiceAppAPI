@@ -142,5 +142,101 @@ module.exports = {
             console.log(err);
             throw new Error("Error while fetching data");
         }
+    },
+    admin_getDateWiseTotalPayableAmount: async (parent,args,{models,user})=>{
+        const admin=await models.SystemAdmin.findById(user.id);
+        if (!admin){
+            throw new Error("You cannot do this");
+        }
+        try{
+            return models.Appointment.aggregate([
+                {
+                    $match:
+                        {
+                            state:"finished"
+                        }
+                },
+                {
+                    $project:
+                        {
+                            finish_date:
+                                {
+                                    $dateToString:
+                                        {
+                                            format:"%Y-%m-%d",
+                                            date:"$finish_date"
+                                        }
+                                },
+                            Amount:"$cost"
+                        }
+                },
+                {
+                    $group:
+                        {
+                            _id: "$finish_date",
+                            Amount: {
+                                $sum: "$Amount"
+                            }
+                        }
+                },
+                {
+                    $sort:
+                        {
+                            _id: -1
+                        }
+                }
+            ]);
+        }catch (err){
+            console.log(err);
+            throw new Error("Error while fetching data");
+        }
+    },
+    admin_getSpecificDateWiseTotalPayableAmount: async (parent,{date},{models,user})=>{
+        const admin=await models.SystemAdmin.findById(user.id);
+        if (!admin){
+            throw new Error("You cannot do this");
+        }
+        try{
+            return models.Appointment.aggregate([
+                {
+                    $match:
+                        {
+                            state:"finished"
+                        }
+                },
+                {
+                    $project:
+                        {
+                            finish_date:
+                                {
+                                    $dateToString:
+                                        {
+                                            format:"%Y-%m-%d",
+                                            date:"$finish_date"
+                                        }
+                                },
+                            Amount:"$cost"
+                        }
+                },
+                {
+                    $group:
+                        {
+                            _id: "$finish_date",
+                            Amount: {
+                                $sum: "$Amount"
+                            }
+                        }
+                },
+                {
+                    $match:
+                        {
+                            _id: date
+                        }
+                }
+            ]);
+        }catch (err){
+            console.log(err);
+            throw new Error("Error while fetching data");
+        }
     }
 }

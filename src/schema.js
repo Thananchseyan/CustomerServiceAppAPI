@@ -303,6 +303,8 @@ module.exports=gql`
     admin_getOpenSP:[ServiceProvider]
     admin_getDateWiseTotalPayment:[AmountFeed]
     admin_getSpecificDateTotalPayment(date:String!):[AmountFeed]
+    admin_getDateWiseTotalPayableAmount:[AmountFeed]
+    admin_getSpecificDateWiseTotalPayableAmount(date:String!):[AmountFeed]
     }
     
     type Mutation{
