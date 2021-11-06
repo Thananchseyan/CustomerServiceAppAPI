@@ -231,7 +231,9 @@ module.exports=gql`
     showDistricts:[District]
     showDistricts_pagination(offset:Int!,page:Int!):[District!]!
     showOwners:[Owner!]!
-    showCustomers:[Customer!]!
+    showCustomers:[Customer]
+    showSPS:[ServiceProvider]
+    showModerators:[Moderator]
     getProvinceID(provinceName:String!):String!
     districtsByProvince(ProvinceName:String!):[District!]!
     showServiceProviders:[ServiceProvider!]!

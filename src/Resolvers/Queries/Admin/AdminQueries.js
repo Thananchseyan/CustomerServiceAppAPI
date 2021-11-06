@@ -1,6 +1,33 @@
 module.exports = {
     showCustomers:async (parent,{args},{models})=>{
-        return models.Customer.find();
+        return models.Customer.aggregate([
+            {
+                $sort:
+                    {
+                        username:1
+                    }
+            }
+        ]);
+    },
+    showSPS:async (parent,args,{models})=>{
+        return models.ServiceProvider.aggregate([
+            {
+                $sort:
+                    {
+                        username:1
+                    }
+            }
+        ])
+    },
+    showModerators: async (parent,args,{models})=>{
+        return models.Moderator.aggregate([
+            {
+                $sort:
+                    {
+                        username:1
+                    }
+            }
+        ])
     },
     admin_getOpenSP:async (parent,args,{models,user})=>{
         const admin=await models.SystemAdmin.findById(user.id);
