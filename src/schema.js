@@ -307,6 +307,7 @@ module.exports=gql`
     admin_getSpecificDateTotalPayment(date:String!):[AmountFeed]
     admin_getDateWiseTotalPayableAmount:[AmountFeed]
     admin_getSpecificDateWiseTotalPayableAmount(date:String!):[AmountFeed]
+    customer_getMyUnpaidWorks:[Appointment]
     }
     
     type Mutation{
