@@ -153,6 +153,28 @@ module.exports={
             console.log(err);
             throw new Error("Error while fetching");
         }
+    },
+    SP_CheckWorkerUsernameAvailability: async (parent,{username},{models,user})=>{
+        const provider=await models.ServiceProvider.findById(user.id);
+        const moderator=await models.Moderator.findById(user.id);
+        let sp_id=null;
+        if (provider){
+            console.log("sp");
+            sp_id=user.id;
+        }else if (moderator){
+            sp_id=moderator.serviceProvider;
+        }else{
+            throw new Error("You cannot query this");
+        }
+        try{
+            const worker=await models.Worker.findOne({username:username,serviceProvider:sp_id});
+            if (worker){
+                return worker;
+            }
+        }catch (err){
+            console.log(err);
+            throw new Error("Source not found");
+        }
     }
 }
 
