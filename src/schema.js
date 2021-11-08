@@ -220,6 +220,12 @@ module.exports=gql`
     Amount:Float
     }
     
+    type UserFeed{
+    _id:ID!
+    username:String!
+    role:String!
+    }
+    
    
     type Query{
     SP_me:ServiceProvider!
@@ -309,6 +315,7 @@ module.exports=gql`
     admin_getSpecificDateWiseTotalPayableAmount(date:String!):[AmountFeed]
     customer_getMyUnpaidWorks:[Appointment]
     SP_CheckWorkerUsernameAvailability(username:String!):Worker
+    getMe:[UserFeed]
     }
     
     type Mutation{
