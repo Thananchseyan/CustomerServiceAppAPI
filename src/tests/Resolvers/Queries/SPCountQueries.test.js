@@ -159,7 +159,7 @@ describe("Given queries are for get Counts for SP",()=>{
                 }
             }
             const user = {}
-            expect(spCountQueries.getCountWorkerNotification({}, {}, {models, user})).rejects.toThrow("You cannot query this");
+            expect(spCountQueries.getCountWorkerNotification({}, {}, {models, user})).rejects.toThrow("You cannot Query this");
         })
     })
 })
