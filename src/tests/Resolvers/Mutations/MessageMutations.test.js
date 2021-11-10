@@ -41,7 +41,7 @@ describe("given mutations are about messages",()=>{
                 Worker:{
                     findById:mock
                 },
-                Messsage:{
+                Message:{
                     updateOne:mock
                 }
             }
